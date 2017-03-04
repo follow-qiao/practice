@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			body,li,h3,dl,dd{
+				margin:0;
+			}
+			ul{
+				margin:0;
+				padding:0;
+				list-style:none;
+			}
+			.wrap{
+				width:1000px;
+				height:500px;
+				margin-left:calc(50% - 500px);
+				margin-top:80px;
+				background:url(img/bg.jpg) no-repeat;
+				display:flex;
+				justify-content: center;
+				align-items: center;	
+			}
+			.box{
+				width:760px;
+				height:260px;
+				background-color:#fff;
+			}
+			.banner{
+				height:30px;
+				width:100%;
+				padding-top:10px;
+				padding-bottom:10px;
+				background:url(img/nav_bg.png);
+			}
+			.abnner_name{
+				float:left;
+				font:14px/30px "微软雅黑";
+				color:#0f1011;
+				padding-left:20px;
+			}
+			.select{
+				float:left;
+				margin-top:3px;
+				border:2px solid #69bcd0;
+			}
+			.text{
+				float:left;
+				font:14px/23px "微软雅黑";
+				margin-left:6px;
+				margin-right:6px;
+			}
+			.icon{
+				float:left;
+				width:17px;
+				height:17px;
+				margin-right:1px;
+				background:url(img/close.png) no-repeat;
+				margin-top:2px;
+			}
+			.type{
+				height:190px;
+				padding-top:20px;
+				padding-left:28px;
+				background:url(img/type_bg.png) no-repeat;
+			}
+			.type_name{
+				float:left;
+				font:14px/42px arrial, "微软雅黑";
+				color:#868989;
+			}
+			.type_info{
+				float:left;
+				font:14px/22px arrial, "微软雅黑";
+				margin:10px 18px;
+				color:#030404;
+				cursor:pointer;
+			}
+			.type dl{
+				content:"";
+				clear:both;
+				display:block;
+			}
+			.type dd.active{
+				color:#2e9bb7;
+			}
+		</style>
+	</head>
+	<body>
+		<section class="wrap">
+			<div class="box">
+				<dl class="banner">
+					<dt class="abnner_name">你的选择：</dt>
+					<!--<dd class="select">
+						<span class="text">小米</span>
+						<a class="icon"></a>
+					</dd>-->
+				</dl>
+				<div class="type">
+					<dl>
+						<dt class="type_name">品牌 :</dt>
+						<dd class="type_info">小米</dd>
+						<dd class="type_info">锤子</dd>
+						<dd class="type_info">魅族</dd>
+						<dd class="type_info">三星</dd>
+						<dd class="type_info">OPPO</dd>
+						<dd class="type_info">vivo</dd>
+						<dd class="type_info">乐视</dd>
+						<dd class="type_info">360</dd>
+						<dd class="type_info">中兴</dd>
+						<dd class="type_info">索尼</dd>
+					</dl>
+					<dl>
+						<dt class="type_name">尺寸 :</dt>
+						<dd class="type_info">3.0英寸以下</dd>
+						<dd class="type_info">3.0-3.9英寸</dd>
+						<dd class="type_info">4.0-4.5英寸</dd>
+						<dd class="type_info">4.6-4.9英寸</dd>
+						<dd class="type_info">5.0-5.5英寸</dd>
+						<dd class="type_info">6.0英寸以上</dd>
+					</dl>
+					<dl>
+						<dt class="type_name">系统 :</dt>
+						<dd class="type_info">安卓(Android)</dd>
+						<dd class="type_info">苹果(IOS)</dd>
+						<dd class="type_info">微软(WindowsPhone)</dd>
+						<dd class="type_info">无</dd>
+						<dd class="type_info">其它</dd>
+					</dl>
+					<dl>
+						<dt class="type_name">网络 :</dt>
+						<dd class="type_info">联通3G</dd>
+						<dd class="type_info">双卡单4G</dd>
+						<dd class="type_info">双卡双4G</dd>
+						<dd class="type_info">联通4G</dd>
+						<dd class="type_info">电信4G</dd>
+						<dd class="type_info">移动4G</dd>
+					</dl>
+				</div>
+			</div>
+			<!--1.做颜色替换
+			2.生成结构(创建节点)，新生成的结构的存在数组里，方便与各种类型做关联(使不同类型的位置固定)；
+			3.每种类型的数据在banner区的显示位置固定，这就需要自定义一个属性id，
+				让每一种类型的自定义属性id值与要生成结点的属性id值相等；
+				最后对数组进行排序，就固定了显示位置；-->
+			
+		</section>
+		<script>
+			//获取type类型
+			var type=document.querySelector('.type');
+			var banner=document.querySelector('.banner');
+			
+			//获取所有类型
+			var dls=type.children;
+			//声明一个空数组存放banner区所要展示的数据
+			var dataArr=[];
+			
+//----------由于要对多组数据进行同样的操作,所以做一组数据的操作,进行for循环传参--------------------
+			//对具有同样效果的一组数据进行循环
+			for(var i=0,len=dls.length;i<len;i++){
+				changeColor(dls[i],i)
+			}
+			//对颜色变换生成函数
+			function changeColor(typeParent,index){
+				var dds=typeParent.getElementsByTagName('dd')//获取当前这组可点击dd;				
+				//做替换会想到清空上一个的办法(再循环前声明一个上一个)
+				var prev=dds[0];      //上一个随便定，最后让这一个的上一个就完成交替的效果了
+				typeParent.pId=index;
+				//给每一种类型加一个自定义的属性id；用来捆绑banner区的显示位置；
+				
+				//对当前的一组数据操作用for循环
+				for(var i=0,len=dds.length;i<len;i++){
+					dds[i].onclick=function (){
+						//交替显示效果
+						prev.classList.remove('active');//对上一个进行清除样式
+						this.classList.toggle('active');//对当前这个添加样式
+						prev=this;//在把当前这个负值给上一个
+						showDate(storeData(dataArr,createDd(this,this.parentNode.pId,dataArr)))
+						console.log(createDd(this))    //获取到当前点击生成的数据(标签结构)，便于操作；
+					}
+				}	
+			}
+//----------生成以选择区域需要的结点，并把数据return出来，(获取到需要的数据)----------------------------------------
+			function createDd(thisClick,typePid,data){
+				//创建需要的生成的结点
+				var dd=document.createElement('dd');
+				var span=document.createElement('span');
+				var a=document.createElement('a');
+				//生成结构
+				dd.appendChild(span);
+				dd.appendChild(a);
+//				对当前生成的(要展示的结构)元素自定义一个PId属性；让它与当前点击的父元素pId相等				
+				dd.pId=typePid;		//typePid指的是当前点击的父元素自定义属性pId;				
+				//对接点添加样式
+				dd.classList.add('select');
+				span.classList.add('text');
+				a.classList.add('icon');
+				//删除操作
+				a.onclick=function (){
+					thisClick.classList.remove('active');
+					showDate(delectData(data,typePid))
+				}
+				//由于a元素里的内容随着点击的类型而变化，所以要关联当前点击的元素，所以就会想到用传参的方式调用函数；
+				span.innerHTML=thisClick.innerHTML;//把当前点击的内容当参数传进来
+				
+				//目的是把需要的数据存到数组里，更方便对数据做一些相关的操作；
+				return dd;  //(这点很棒)
+			}
+//----------把生成的数据存到数组中去，并进行数组去重(由于需求是每一种类型在banner显示的位置是固定的)-------------------------------------------------------------
+			function storeData(data,showDd){
+				//判断数组里是否有数据，如果没有就往数组里添加；
+				if(data.length){
+					//如果数组里有数据就要判断数据是否是同一类型，若果是同一类型只做替换操作，不再重复生成
+					for(var i=0,len=data.length;i<len;i++){
+						//如果当前数组元素的pid=当前生成元素的pid，那么就替换；
+//						条件不成立的话就不执行，就直接往数组里填数据(good)
+						if(data[i].pId===showDd.pId){
+							data[i]=showDd;
+							return data
+						}
+					}
+				}
+				
+				console.log(dataArr);
+				
+				//数组里没有数据就添加数据
+				data.push(showDd)
+				//最后把数组在返回出来
+				return data;
+			}
+//----------把最后生成的数据进行与每一种类型要展示的顺序关联并添加到banner区----------------------------
+			function showDate(data){
+				banner.innerHTML='<dt class="abnner_name">你的选择：</dt>';
+				//对数组里的元素进行排序,在对排号顺序的数据添加到banner里;
+				data.sort(function (a,b){
+					return a.pId - b.pId;
+				}).forEach(function (item,i){
+					banner.appendChild(item);
+				})
+			}
+//----------删除banner区数组中的选中元素,(也就是对数组删除,重新添加)-----------------
+			function delectData(data,typePid){
+				for(var i=0,len=dataArr.length;i<len;i++){
+					//当前数组的元素的pid与当前已选中的类型的pid是否相等
+					if(data[i].pId===typePid){
+						data.splice(i,1)
+						return data;
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

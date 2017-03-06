@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			body,li{
+				margin:0;
+			}
+			ul{
+				margin:0;
+				padding:0;
+				list-style:none;
+			}
+			.wrap{
+				padding:20px;
+				width:600px;
+				border:1px solid #000000;
+				margin-left:calc(50% - 300px);
+				display:flex;
+				justify-content:space-around;
+				align-items:center;
+			}
+			ul{
+				width:200px;
+				height:600px;
+				border:1px solid #000000;
+				display:flex;
+				flex-direction:column;
+				flex-wrap:wrap;
+				align-items:center;			
+			  }
+			  li{
+			  	width:160px;
+			  	height:30px;
+			  	margin-top:15px;
+			  	font:bold 20px/30px  "微软雅黑";
+			  	color:#000;
+			  	border:1px solid #0C0809;
+			  	text-align:center;
+			  	background-color:#FEF86B;
+			  }
+		  button{
+		  	width:60px;
+		  	font:14px/20px "微软雅黑";
+		  	color:#000;
+		  	background-color:#6DE0FD;		  	
+		  }
+		  ul li.active{
+		  	background-color:#F73F28;
+		  }
+		</style>
+	</head>
+	<body>
+		<section class="wrap">
+			<ul class="left">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+			</ul>
+			<button>左移</button>
+			<button>右移</button>
+			<ul class="right">
+				<li>7</li>
+				<li>8</li>
+				<li>9</li>
+				<li>10</li>
+				<li>11</li>
+				<li>12</li>
+			</ul>
+		</section>
+		<script>
+			var left=document.querySelector('.left');      //获取左边要移动的父级元素
+			var right=document.querySelector('.right');		//获取右边要移动的父级元素
+			var btns=document.querySelectorAll('button');   //获取点击按钮
+			
+//----------这里是动态获取所有元素,类数组长度也就会发生变化.(一定要注意--i)
+			var leftLis=left.children,rightLis=right.children;  //获取左右的所有可点击的Li元素
+			clickLi(leftLis);
+			clickLi(rightLis);
+			btns[0].onclick=function (){
+				move(rightLis,left)
+			}
+			btns[1].onclick=function (){
+				move(leftLis,right)
+			}
+			function clickLi(arr){
+				for(var i=0,len=arr.length;i<len;i++){
+					arr[i].onclick=function (){
+						this.classList.toggle('active')
+					}
+				}
+			}
+			function move(arr,parent){
+				for(var i=0,len=arr.length;i<len;i++){
+					if(arr[i].classList.contains('active')){
+						arr[i].classList.remove('active')
+						parent.appendChild(arr[i]);
+						//长度动态发生变化当转移大于1的时候；数组长度变小，多选的实际索引值会上升，
+						--i;
+					}
+				}
+			}
+			
+			
+		</script>
+	
+	</body>
+</html>

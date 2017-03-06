@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			body,h3,li{
+				margin:0
+			}
+			ul{
+				margin:0;
+				padding:0;
+				list-style:none;
+			}
+			ul ul{
+				display:none;
+			}
+			ul ul.active{
+				display:block;
+			}
+			.wrap{
+				width:650px;
+				height:800px;
+				border:1px solid #fff;
+				padding-left:50px;
+				margin-left:calc(50% - 350px);
+				background:url(img/bg.png) no-repeat;
+				background-size:650px 800px;
+			}
+			h3{
+				height:0;
+				padding-top:70px;
+				overflow:hidden;
+				background:url(img/logo.png) no-repeat center center;
+			}
+			ul li {
+				position: relative;
+				padding-left: 10px;
+			}
+			ul li div{
+				height: 98%;
+				width: 1px;
+				border-left: 2px dotted #000;
+				position: absolute;
+				left: 14px;
+				top: 18px;
+			}
+			.title{
+				font:20px/32px "微软雅黑";
+				color:#86919b;	
+			}
+			span{
+				display:block;
+				padding-left:10px;
+				font:20px/32px "微软雅黑";
+				color:#86919b;
+				background:url(img/icon.png) no-repeat left 500px;
+			}
+			ul li span.add {
+				background-position: 0px -28px;
+			}
+			ul li span.line {
+				background-position: 0px 11px;
+			}
+			li ul{
+				padding-left:50px;
+			}
+		</style>
+	</head>
+	<body>
+		<section class="wrap">
+			<h3>妙味课堂</h3>
+			<ul class="list"></ul>		
+		</section>
+		<script>
+			var data = [
+			{
+				title: '第一级菜单',
+				child: [
+					{
+						title: '第二级菜单',
+						child: [
+							{
+								title: '第三级菜单'
+							},
+							{
+								title: '第三级菜单'
+							}
+						]
+					},
+					{
+						title: '第二级菜单',
+						child: [
+							{
+								title: '第三级菜单'
+							},
+							{
+								title: '第三级菜单',
+								child: [
+									{
+										title: '第四级菜单'
+									}
+								]
+							}
+						]
+					},
+					{
+						title: '第二级菜单'
+					}
+				]
+			},
+			{
+				title: '第一级菜单',
+				child: [
+					{
+						title: '第二级菜单'
+					},
+					{
+						title: '第二级菜单'
+					},
+					{
+						title: '第二级菜单'
+					}
+				]
+			},
+			{
+				title: '第一级菜单',
+				child: [
+					{
+						title: '第二级菜单'
+					},
+					{
+						title: '第二级菜单'
+					},
+					{
+						title: '第二级菜单',
+						child: [
+							{
+								title: '第三级菜单'
+							}
+						]
+					}
+				]
+			}
+		];
+		var list=document.querySelector('.list');
+//		//字符串的方法
+		//1.对star进行3次拼接：开始，中间内容的有无(进行条件判断)，结束；
+		//2.对与结构一样的，要想到用递归(自己在玩一边自己)，这里要把拼接的数据return，否则递归里的数据会出现问题；
+//		function creat(oUL){
+//			var str='';
+//			for(var i=0,len=oUL.length;i<len;i++){
+//				//把想要的数据分多次拼接，因为中间需要做判断，是否有ul元素；
+//				str+=`<li><span>${oUL[i].title}</span>`;
+//				//判断是否有ul
+//				if(oUL[i].child){
+//					//由于结构都是一样的，所以这里需要自己玩自己一次（递归）
+//					str+=`<ul>${creat(oUL[i].child)}</ul>`;
+//				}
+//				str+=`</li>`;
+//			}
+//			console.log(i)
+//			//这里一定要反回一下数据，要不然递归里的数据不生效
+//			return str;
+//		}
+//		list.innerHTML=creat(data)
+		//Dom的方法
+		//先把最外层结构写出来，再看需要在那里判断添加内容，结构一样循环执行(递归)
+		createNote(data,list);
+		function createNote(data,oUl){
+			for(var i=0,len=data.length;i<len;i++){
+				//创建需要的结点
+				var li=document.createElement('li');
+				var span=document.createElement('span');
+				//添加span里的标题
+				span.innerHTML=data[i].title;
+				//拼接结构
+				li.appendChild(span);
+				//判断是否有子菜单
+				if(data[i].child){
+					//给有子菜单的添加默认样式
+					span.classList.add('add');
+					//有子菜单证明还有ul结点，所以需在创建一个结点
+					var sonUl=document.createElement('ul')
+					//有子菜单(ul),说明还要在执行一次这个函数(递归)
+					createNote(data[i].child,sonUl);
+					//在把子菜单的ul放到父级li中
+					li.appendChild(sonUl);
+				}
+				//没有子节点，就把li标签直接放到ul标签中就可以了
+				oUl.appendChild(li);
+			}
+			
+		}
+		clicTitle(list);
+		//标题点击事件的函数
+		function clicTitle(oUL){
+			//获取到所有同一级的所有li
+			var lis=oUL.children;
+			for(var i=0,len=lis.length;i<len;i++){
+				//获取到li下的标题
+				var span=lis[i].firstElementChild;
+				span.onclick=function (){
+					console.log(1)
+					//获取到标题的下一个结点，用来判断是否有子菜单；
+					var nextUl=this.nextElementSibling;
+					//由于需求的需要，点击当前的一级标题，需关掉其它级的标题
+					//这里就需要获取当前点击的li标签父级的父级下的所有Ul
+					var parentParent=this.parentNode.parentNode;
+					var uls=parentParent.getElementsByTagName('ul');
+					//如果有下一结点证明有子菜单，所以要进行以下需求的判断
+					if(nextUl){
+						//这里需对这些uls做判断，看是否是当前点击标题的下一个结点ul
+						for(var i=0,len=uls.length;i<len;i++){
+							if(uls[i]!=nextUl){
+								//把不是当前点击的其它ul样式干掉
+								uls[i].classList.remove('active');
+								uls[i].previousElementSibling.classList.remove('line');
+							}
+						}
+						nextUl.classList.toggle('active');
+						this.classList.toggle('line')
+						//有子菜单ul说明还要在进行一次这个函数(递归)
+						clicTitle(nextUl)
+					}
+					
+				}
+			}
+		}
+	</script>
+	</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			p{
+				width:180px;
+				height:100px;
+				border:1px solid #000;
+				text-align:center;
+				line-height:100px;
+				display:none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="div1">
+			<input type="button" value="按钮一" style="background: yellowgreen;" />
+			<input type="button" value="按钮二" />
+			<input type="button" value="按钮三" />
+			<p style="display: block;">内容一</p>
+			<p>内容二</p>
+			<p>内容三</p>
+		</div>
+		<div class="div2">
+			<input type="button" value="按钮一" style="background: yellowgreen;"/>
+			<input type="button" value="按钮二" />
+			<input type="button" value="按钮三" />
+			<p style="display: block;">内容一</p>
+			<p>内容二</p>
+			<p>内容三</p>
+		</div>
+		<input type="button" value="开始播放第二个" id="btn1" />
+		<input type="button" value="停止播放第一个" id="btn2" />
+		<input type="button" value="开始播放所有" id="btn3" />
+		<input type="button" value="停止播放所有" id="btn4" />
+		<input type="button" value="反向播放" id="btn5" />
+		<script>
+			var div1=document.querySelector('.div1')
+			var div2=document.querySelector('.div2')
+			var btns=null,ps=null;
+			//变量
+			function Tap(parent){
+				this.btns=parent.getElementsByTagName('input');
+				this.ps=parent.getElementsByTagName('p');
+				this.timer=null;
+			}
+			//方法
+			Tap.prototype.init=function (parent){
+				var that=this;
+				for(var i=0;i<this.btns.length;i++){
+					this.btns[i].index=i;				
+					this.btns[i].onclick=function (){						
+						that.change(this.index)
+					}
+				}
+			}
+			Tap.prototype.change=function (index){
+				for(var i=0;i<this.btns.length;i++){
+					this.btns[i].style.backgroundColor = '';
+					this.ps[i].style.display = 'none';
+				}
+				this.btns[index].style.backgroundColor = 'yellowgreen';
+				this.ps[index].style.display = 'block';
+			}
+			Tap.prototype.play=function (){
+				var n=0;
+				var that=this;
+				this.timer=setInterval(function (){
+					n++;
+					if(n>that.btns.length-1){
+						n=0
+					}
+					that.change(n)
+				},1000)
+			}
+			Tap.prototype.stop=function (){
+				clearInterval(this.timer)
+				this.timer = null;
+			}
+			Tap.prototype.status=function (){
+				return !!this.timer;
+			}
+//			tap(div1)
+			var tap1=new Tap(div1);
+			tap1.init();
+			var tap2=new Tap(div2);
+			tap2.init();
+			btn1.onclick=function (){
+				if(tap2.status()){
+					return;
+				}
+				tap2.play();
+			}
+			btn2.onclick=function (){
+				tap1.stop();
+			}
+			btn3.onclick=function (){
+				if(!tap1.status()){
+					tap1.play();
+				}
+				if(!tap2.status()){
+					tap2.play();
+				}
+			}
+			btn4.onclick=function (){
+				tap1.stop();
+				tap2.stop();
+			}
+			btn5.onclick=function (){
+					if(tap1.status()){						
+						tap1.stop();
+					}else{
+						tap1.play();
+					}
+					if(tap2.status()){
+						tap2.stop();
+					}else{
+						tap2.play();
+					}
+			}
+		</script>
+	</body>
+</html>

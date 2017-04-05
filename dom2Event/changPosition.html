@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			body,li{
+				margin:0;
+			}
+			button{
+				border:none;
+				padding:0;
+			}
+			.wrap{
+				width:700px;
+				margin-left:calc(50% - 300px);
+				margin-top:30px;
+				border:2px solid #000;
+			}
+			.func{
+				height:50px;
+				display:flex;
+				justify-content: center;
+				align-items: center;	
+				border-bottom:2px solid #000;					
+			}
+			button{
+				height:40px;
+				width:150px;
+				margin-left:20px;
+				font:20px/40px "微软雅黑";
+				color:#fff;
+				background-color:#B8860B;
+			}
+			ul{
+				position:relative;
+				margin:0;
+				padding:0;
+				height:500px;
+				padding-top:20px;
+				list-style:none;
+				display:flex;
+				justify-content: space-around;
+				align-items: space-around;	
+				flex-wrap:wrap;
+				
+			}
+			li{		
+				width:130px;
+				height:150px;
+				font:30px/150px arrial;
+				color:#000;
+				text-align:center;
+				background-color:#7FFFD4;
+				margin-bottom:20px;
+
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="func">
+				<button>从小到大排序</button>
+				<button>随机打乱</button>
+				<button>颜色变换</button>
+				<button>拖拽文件夹功能</button>
+			</div>
+			<ul class="list">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>7</li>
+				<li>8</li>
+				<li>9</li>
+				<li>10</li>
+				<li>11</li>
+				<li>12</li>
+				<li>13</li>
+				<li>14</li>
+				<li>15</li>
+			</ul>
+		</div>
+		<script src="js/qy_tools.js"></script>
+		<script>
+			var btns=document.querySelectorAll('button');
+			var lis=document.querySelectorAll('li');
+			var wrap=document.querySelector('.list');
+			console.log(wrap)
+			var arr=[];
+			var flag=true;
+			
+			getDate();
+			setPosition();
+			btns[0].onclick=function (){
+				//对数组进行反向排序
+				arr.reverse()
+				if(flag){
+					btns[0].innerHTML='从小到大排序'
+					
+				}else{
+					btns[0].innerHTML='从大到小排序'
+				}
+				for(var i=0;i<lis.length;i++){
+					qy.animation(lis[i],{left:arr[i][0],top:arr[i][1]},200,'linear')
+				}
+				flag=!flag;
+			}
+			//对数组进行浅拷贝(slice)
+			var outOrder=arr.slice();   
+			//随机变换
+			btns[1].onclick=function (){
+				//对数据进行随机排序
+				outOrder.sort(function (){
+					return 0.5 - Math.random();
+				})
+				for(var i=0;i<lis.length;i++){
+//					var y=(wrap.clientHeight/2)-75;
+//					var x=(wrap.clientWidth/2)-65;
+//					console.log(x,y)
+					qy.animation(lis[i],{left:outOrder[i][0],top:outOrder[i][1]},200,'linear');
+				}
+			}
+			//随机变换颜色
+			btns[2].onclick=function (){
+				for(var i=0;i<lis.length;i++){
+					lis[i].style['background-color']=`rgb(${80+~~(Math.random()*175)},${80+~~(Math.random()*175)},${60+~~(Math.random()*195)})`
+				}
+				
+			}
+			//~~(Math.random()*195) rgb值一定要是整数，所以用~~去除小数
+			var roundH=wrap.clientHeight;  //获取li元素的高度运动范围
+			var roundW=wrap.clientWidth;		//获取li元素宽度运动范围
+			btns[3].onclick=function (){
+				console.log(1)
+				for(var i=0;i<lis.length;i++){
+					lis[i].onmousedown=function(e){
+						var this_=this;
+						var x=this.offsetLeft;   //获取当前元素left值
+						var y=this.offsetTop;	//获取当前元素的top值
+						var h=this.offsetHeight; //获取当前元素的高度
+						var w=this.offsetWidth;		//获取当前元素的宽度
+						var dx=e.pageX-qy.getRect(this_, 'left');
+						var dy=e.pageY-qy.getRect(this_, 'top');
+						console.log(dx)
+						window.onmousemove=function (e){
+							var moveL=e.pageX-dx-qy.getRect(wrap, 'left');
+							var moveT=e.pageY-dy-qy.getRect(wrap, 'top');
+							if(moveL<=0){
+								moveL=0;
+							}
+							if(moveL>=roundW-w){
+								moveL=roundW-w
+							}
+							if(moveT<=0){
+								moveT=0;
+							}
+							if(moveT>=roundH-h){
+								moveT=roundH-h;
+							}
+							this_.style.left=moveL+'px';
+							this_.style.top=moveT+'px';
+							this_.style['z-index']=99;
+						}
+						window.onmouseup=function (){
+							this_.style.left=x+'px';
+							this_.style.top=y+'px';
+							this_.style['z-index']='';
+							window.onmousemove=window.onmouseup=null;
+						}
+						return false;  //清除默认样式
+					}
+				}
+			}
+			
+			//获取定位需要的数据
+			function getDate(){
+					//获取最初的left top值
+				for(var i=0;i<lis.length;i++){
+					arr[i]=[lis[i].offsetLeft,lis[i].offsetTop]
+					//给每个元素身上给一个数据的索引值，交换位置时只需要交换元素身上数据的索引值就行
+					lis[i].index = i;
+				}
+			}
+			function setPosition(){
+				for(var i=0;i<lis.length;i++){
+					//清空margin,添加position(这个不能遇上一个写在一起)
+					lis[i].style.left=arr[i][0]+'px';
+					lis[i].style.top=arr[i][1]+'px';
+					lis[i].style.position='absolute';
+					lis[i].style.margin='';
+				}
+			}
+		</script>
+	</body>
+</html>

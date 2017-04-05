@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin:0;
+			}
+			.wrap{
+				width:400px;
+				height:400px;
+				margin:40px auto;
+				border:1px solid #000;
+			}
+			.box{
+				position:absolute;
+				width:100px;
+				height:100px;
+				background-color:red;
+				cursor: move;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="box"></div>
+		</div>
+		
+		<script>
+
+//			var box=document.querySelector(".box");
+//			var wrap=document.querySelector('.wrap');
+//			box.onmousedown=function (e){
+//				var dx=e.clientX-this.offsetLeft;
+//				var dy=e.clientY-this.offsetHeight;
+//				document.onmousemove=function (e){
+//					box.style.left=e.clientX-dx+'px';
+//					box.style.top=e.clientY-dy+'px';
+//				}
+//				document.onmouseup=function (){
+//					document.onmousemove=document.onmouseup=null
+//				}
+//			}
+//						//构造器函数
+			function Drap(){
+				this.box=document.querySelector('.box');
+				this.wrap=document.querySelector('.wrap');
+				this.init();
+			}
+			Drap.prototype.init=function (){
+				var that=this;
+				this.box.onmousedown=function (e){
+					//this指的是元素
+					that.downFn(e)
+				}
+			}
+			Drap.prototype.downFn=function (e){
+				var that=this;
+				//this指的是实例
+				this.dx=e.clientX-this.box.offsetLeft;
+				this.dy=e.clientY-this.box.offsetTop;
+				document.onmousemove=function (e){
+					that.moveFn(e);
+				}
+				document.onmouseup=this.upFn
+			}
+			Drap.prototype.moveFn=function (e){
+				var l=e.clientX-this.dx;
+				var t=e.clientY-this.dy;
+				if(l<this.wrap.offsetLeft){
+					l=this.wrap.offsetLeft
+				}
+				if(l>this.wrap.offsetLeft+this.wrap.offsetWidth-this.box.offsetWidth){
+					l=this.wrap.offsetLeft+this.wrap.offsetWidth-this.box.offsetWidth;
+				}
+				if(t<this.wrap.offsetTop){
+					t=this.wrap.offsetTop
+				}
+				if(t>this.wrap.offsetTop+this.wrap.offsetHeight-this.box.offsetHeight){
+					t=this.wrap.offsetTop+this.wrap.offsetHeight-this.box.offsetHeight
+				}
+				this.box.style.left=l+'px';
+				this.box.style.top=t+'px';	
+			}
+			Drap.prototype.upFn=function (){
+				document.onmousemove=document.onmouseup=null
+			}
+			var d=new Drap();
+		</script>
+	</body>
+</html>

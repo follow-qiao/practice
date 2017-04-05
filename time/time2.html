@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--假如你的生日是5月25日，计算一下2017年到3017年有多少个生日是星期一，并统计一下这些日期在一个星期中分布情况-->
+		<script>
+			//声明一个数组星期，再把数组星期替换成0，就可以对数组进行统计就可以了
+			var daysNum=[0,0,0,0,0,0,0]   //daysNum[i]++就会得到多少个生日在星期几
+			//获取到每一年(for循环)生日的new Date();用到了对时间的设置，
+			for(var i=2017;i<=3017;i++){
+				daysNum[new Date(i,4,25).getDay()]++;
+			}
+			console.log(daysNum)
+		</script>
+	</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			body{
+				margin:0;
+				
+			}
+			.wrap{
+				margin:0 auto;
+			}
+			.wrap span{
+				display:inline-block;
+				width:80px;
+				height:80px;
+				line-height:80px;
+				border:1px solid #0F1011;
+				background:red;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<span></span>
+		</div>
+		<script>
+			var wrap=document.querySelector('.wrap');
+			
+//----------当有两个for时，外面的for执行一次，里面的for就要全部循环一次；
+			//i代表行数
+//			for(var i=1;i<=9;i++){
+//				//J代表列数
+//				for(var j=1;j<=i;j++){
+//					//具体运行出的数据
+//					document.write(`${i}*${j}=${i*j} `)
+//				}
+//				document.write(`</br>`);
+//			}
+			var str='';
+			for(var i=1;i<=9;i++){
+				for(var j=1;j<=i;j++){
+					str+=`<span>${i}*${j}=${i*j}</span>`;
+				}
+				str+=`</br>`;
+				wrap.innerHTML=str;
+			}
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.full-pop {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 300px;
+				padding:10px;
+				background: #fff;
+				border: 1px solid #ccc;
+			}
+			.dialogTop {
+				overflow: hidden;
+			}
+			.dialogTop .title{
+				float: left;
+				font-size: 12px;
+			}
+			.dialogTop .close{
+				float: right;
+			}
+			.content {
+				padding:30px 0;
+			}
+			.pop-btns {
+				text-align: right;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" value="登录" id="login" />
+		<!-- <div class="full-pop">
+			<div class="dialogTop">
+				<div class="title">这是一个弹框</div>
+		            	<span class="close" title="关闭">×</span>
+			</div>
+		            <div class="content">
+		               这里是弹框内容
+		            </div>
+		            <div class="pop-btns">
+		            	<button class="ok">确定</button>
+		            	<button class="cancel">取消</button>
+		            </div>
+		</div> -->
+		<script>
+			class Dialog {
+				constructor(title){
+					//默认的数据(也就是对默认的的数据进行补充和覆盖)
+					this.newOptions = {
+						title: '这是一个弹框',
+						content: '这是默认的内容',
+						okValue: '确定',
+						cancelValue: '取消'
+					}
+					//将传入的数据添加到this.newOptions(默认数据)中；
+					Object.assign(this.newOptions,title)
+					this._init();
+				}
+				_init(){
+					//把创建好结构的元素保存到实例中；
+					this.dialog=this._creatDialog()
+					//把创建好的元素放到body中；
+					document.body.appendChild(this.dialog)
+					//获取元素
+					this.close = this.dialog.querySelector(".close");
+					//对弹出框进行定位
+					this._positionDialog();
+					this._addEvent();
+				}
+				_html(){
+					return`
+							<div class="dialogTop">
+								<div class="title">${this.newOptions.title}</div>
+		            			<span class="close" title="关闭">×</span>
+							</div>
+		           			<div class="content">
+		               			${this.newOptions.content}
+		            		</div>
+		            		<div class="pop-btns">
+				            	<button class="ok">${this.newOptions.okValue}</button>
+				            	<button class="cancel">${this.newOptions.cancelValue}</button>
+		            		</div>
+						  `
+				}
+				//创建包含结构的外层元素，并返回该元素
+				_creatDialog(){
+					var dialog=document.createElement('div');
+					dialog.className = 'full-pop';
+					dialog.innerHTML = this._html();
+					return dialog;
+				}
+				//对弹框进行定位
+				_positionDialog(){
+					var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+					this.dialog.style.left=(document.documentElement.clientWidth-this.dialog.offsetWidth)/2+'px';
+					this.dialog.style.top=(document.documentElement.clientHeight-this.dialog.offsetHeight)/2+scrollTop+'px';
+				}
+				//对弹出框添加点击事件
+				_addEvent(){
+					//->this指的是实例
+					window.addEventListener(
+						'resize',
+						function(){
+							this._positionDialog()
+						}.bind(this)
+					)
+					window.addEventListener(
+						'scroll',
+						function(){
+							this._positionDialog()
+						}.bind(this)
+					)
+					//移除弹框
+					this.close.addEventListener(
+						'click',
+						function(){
+							document.body.removeChild(this.dialog)
+						}.bind(this)					
+					)
+				}
+				
+			}
+			login.onclick=function(){
+//				var d=new Dialog();
+				var html=`
+					<form action="">
+						姓名:<input type="text">
+						密码:<input type="text">
+					</form>
+				`
+				//要传入的数据
+				var obj={
+					title:'温馨提示',
+					content:html,
+					okValue:"ok",
+					cancelValue:"cancel",
+				}
+				new Dialog(obj);
+			}
+		</script>
+	</body>
+</html>

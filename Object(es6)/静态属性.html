@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>	
+//			var t=new Person();
+//			t.play();
+			class Person{			//声明类不会提升当前作用域的最顶端
+				constructor(){
+					
+				}
+				static fn(){
+					
+				}
+				play(){
+					console.log("我是play");
+				}
+			}
+			//定义在函数身上的属性
+			Person.abc=function (){
+				
+			}
+			var p=new Person();
+			console.log(p.abc);	//undefined
+			console.log(Person.abc);	//function (){}
+			console.log(Person.fn)	//function (){}
+			console.log(p.fn)	//undefined
+		</script>
+	</body>
+</html>

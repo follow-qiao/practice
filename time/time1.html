@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<!--假如你的生日是5月25，那么2017年你的生日是星期几；-->
+		<script>
+			//设置一个目标日期
+			var time= new Date('2017 5 25');
+			//声明一个星期的数组，由于星期日是从0开始的；
+			var days=['星期日','星期一','星期二','星期三','星期四','星期五','星期六']
+			//获取到的数字就是该数组正常的索引值，也就找到了对应的日期；
+			console.log(time.getDay())
+			console.log(days[time.getDay()])
+		</script>
+	</body>
+</html>

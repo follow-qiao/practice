@@ -27,6 +27,8 @@
 			console.log(p1)
 			
 //-------------继承-------------------------
+			//继承，当子类没有自己的属性就不用写constructor也会继承；
+			//当子类有自己的属性时一定要写constructor,并且一定要写super否则会报错；
 			class Coder extends Person{
 				constructor(name,age){
 					super(name,age)

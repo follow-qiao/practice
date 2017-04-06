@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+		
+			salesOffices={};//声明一个空对象，用来存需要的数据和方法
+			
+			salesOffices.book={} //创建数据对象，用来存放不同的数据类型
+			//订阅的方法
+			salesOffices.subscribe=function(statuss,func){ //用来辨别不同类型数据发给不同对象
+				if(!salesOffices.book[statuss]){  //判断有没有空数组
+					salesOffices.book[statuss]=[]; //没有空数组就添加
+				}
+				salesOffices.book[statuss].push(func);//有数组就添加数据
+			}
+			//发布（执行数组里的函数）
+			salesOffices.publish=function(statuss){
+				var books=salesOffices.book[statuss]; 
+				if(books){					
+					for(var i=0;i<books.length;i++){
+						books[i]();
+					}
+				}
+			}
+			//生成不同类型的数据(数组)
+			salesOffices.subscribe('100m',function(){
+				console.log('通知小名')
+			})
+			salesOffices.subscribe('100m',function(){
+				console.log('通知小红')
+			})
+			salesOffices.subscribe('200m',function(){
+				console.log('通知小李')
+			})
+			//通知那些订阅者
+			document.onclick=function(){
+				salesOffices.publish('100m');
+			}
+			
+		</script>
+	</body>
+</html>

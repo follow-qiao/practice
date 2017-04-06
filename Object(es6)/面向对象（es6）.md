@@ -47,6 +47,9 @@ console.log(typeof Person)	//function
 var p1=new Person('leo',30);//Person {name: "leo", age: 30}
 ```
 ### 4. 继承
+>1. 继承，当子类没有自己的属性就不用写constructor也会继承；
+2. 当子类有自己的属性时一定要写constructor,并且一定要写super否则会报错;
+
 1. 表达式：class 子集类名 extends 父级类名;
 2. 使用constructor时，一定要用super,否则会报错，this找不到;
 3. 再父级的this的基础上增加属性；

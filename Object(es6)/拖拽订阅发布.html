@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin:0;
+			}
+			div{
+				position:absolute;
+				width:100px;
+				height:100px;
+				background-color:red;
+			}
+		</style>
+		<script src="js/subscribe.js"></script>
+		<script>
+			class Drag extends SalesOffices{
+				constructor(element){
+					super();
+					this.element=element;
+					this._init();
+				}
+				//初始化方法
+				_init(){
+					this.element.addEventListener(
+						'mousedown',
+						this._downFn.bind(this) //这里需要把this向改为实例
+					)					
+				}
+				_downFn(ev){
+					this.dx=ev.clientX-this.element.offsetLeft;
+					this.dy=ev.clientY-this.element.offsetTop;
+					this.move=this._moveFn.bind(this);
+					this.up=this._upFn.bind(this);
+					this.publish('down')
+					document.addEventListener(
+						'mousemove',
+						this.move
+					)
+					document.addEventListener(
+						'mouseup',
+						this.up
+					)
+				}
+				_moveFn(ev){
+					this.publish('move')
+					this.element.style.left=ev.clientX-this.dx+'px';
+					this.element.style.top=ev.clientY-this.dy+'px';
+				}
+				_upFn(){
+					this.publish('up')
+					document.removeEventListener('mousemove',this.move);
+					document.removeEventListener('mouseup',this.up);
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box1">box1</div>
+		<div id="box2">box2</div>
+		<script>
+			var d1=new Drag(box1)
+			var d2=new Drag(box2)
+			d1.subscribe('down',function(){
+				console.log('box1 down')
+			})
+			d1.subscribe('move',function(){
+				console.log('box1 move')
+			})
+			d1.subscribe('up',function(){
+				console.log('box1 up')
+			})
+			d2.subscribe('down',function(){
+				console.log('box2 down')
+			})
+			d2.subscribe('move',function(){
+				console.log('box2 move')
+			})
+			d2.subscribe('up',function(){
+				console.log('box2 up')
+			})
+			
+		</script>
+	</body>
+</html>

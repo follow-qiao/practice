@@ -46,9 +46,11 @@
 		            	<button class="cancel">取消</button>
 		            </div>
 		</div> -->
+		<script src='js/drag.js'></script>
 		<script>
-			class Dialog {
+			class Dialog extends Drag {
 				constructor(title){
+					super()		//继承的时候一定要用，否则会报错；
 					//默认的数据(也就是对默认的的数据进行补充和覆盖)
 					this.newOptions = {
 						title: '这是一个弹框',
@@ -65,6 +67,9 @@
 					this.dialog=this._creatDialog()
 					//把创建好的元素放到body中；
 					document.body.appendChild(this.dialog)
+					//继承完之后用this就可以访问到父类的方法
+					this.drag(this.dialog)
+					
 					//获取元素
 					this.close = this.dialog.querySelector(".close");
 					//对弹出框进行定位

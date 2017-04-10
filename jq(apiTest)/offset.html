@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin:0;
+			}
+			div{
+				position:relative;
+				width:400px;
+				height:400px;
+				padding:10px;
+				border:10px solid #000;
+				margin:20px auto;
+			}
+			span{
+				position:absolute;
+				/*left:10px;*/
+				/*top:0;*/
+				width:200px;
+				height:200px;
+				padding:5px;
+				border:10px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<script src='js/jquery-3.2.0.js'></script>
+		<script>
+		//offset([coordinates]):相对与当前视口的元素(元素必须是可见元素)left,top值；
+			//取值：offset().left,offset().top
+			//设置：offset({left:300,top:300})
+			$(function(){
+				console.log($('div').offset().left)		//454.5  
+				console.log($('div').offset())	//{top: 20, left: 454.5}
+				console.log($('span').offset({top: 100,left:500}))
+			})
+			
+		</script>
+		<div>
+			<span></span>
+		</div>
+	</body>
+</html>

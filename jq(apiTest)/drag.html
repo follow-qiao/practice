@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			body{
+				margin:0;
+			}
+			div{
+				position:relative;
+				width:400px;
+				height:400px;
+				border:5px solid #000;
+				margin:20px auto;
+			}
+			span{
+				position:absolute;
+				width:100px;
+				height:100px;
+				padding:5px;
+				/*border:5px solid #000;*/
+				background:red;
+				cursor:move;
+			}
+		</style>
+		<script src='js/jquery-3.2.0.js'></script>
+		<script>
+			$(function (){
+				var dragWrap=$('div');
+				var dragEle=$('span');
+				dragEle.mousedown(function(ev){
+//					var dx=ev.pageX-dragEle.offset().left;
+//					var dy=ev.pageY-dragEle.offset().top;
+					$(document).mousemove(function(ev){
+						var l=ev.pageX-dragEle.outerWidth()/2;
+						var t=ev.pageY-dragEle.outerHeight()/2;
+						var borderWidth=(dragWrap.outerWidth()-dragWrap.innerWidth())/2
+						console.log((dragWrap.outerWidth()-dragEle.outerWidth())/2)
+						if(l<dragWrap.offset().left+borderWidth){
+							l=dragWrap.offset().left+borderWidth
+						}
+						if(l>dragWrap.offset().left+dragWrap.outerWidth()-dragEle.outerWidth()-borderWidth){
+							l=dragWrap.offset().left+dragWrap.outerWidth()-dragEle.outerWidth()-borderWidth
+						}
+						if(t<dragWrap.offset().top+borderWidth){
+							t=dragWrap.offset().top+borderWidth
+						}
+						if(t>dragWrap.offset().top+dragWrap.outerHeight()-dragEle.outerHeight()-borderWidth){
+							t=dragWrap.offset().top+dragWrap.outerHeight()-dragEle.outerHeight()-borderWidth
+						}
+						dragEle.offset({left:l,top:t})
+					})
+					$(document).mouseup(function(){
+						$(document).off();	//移除$(document)身上的事件；
+					})
+				})				
+			})
+		</script>
+	</head>
+	<body>
+		<div>
+			<span></span>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.box{
+				width:200px;
+				height:200px;
+				border:1px solid #000;
+			}
+		</style>
+	</head>
+	<body>
+		<script src="js/jquery-3.2.0.js"></script>
+		<script>
+//			1.attr  :向元素行间添加样式;  
+//				attr(prop,value)  设置属性    prop=value形式；
+//				attr(prop)	获取属性值,获取到的值是一个字符串;
+//			2.data	:向获取元素对象定义自定义属性  ,不会再出现行间;
+//				data(prop,value)  设置属性
+//				data(prop)	获取属性值,获取到的值是一个字符串;
+
+			$(function(){
+				$('.box').attr('custom','123');
+				console.log($('.box').attr('custom'))
+				$('.box').data('num','200')
+				console.log($('.box').data('num','200'))
+				console.log($('.box').data('num'))
+			})
+		</script>
+	</body>
+	<div class="box"></div>
+</html>

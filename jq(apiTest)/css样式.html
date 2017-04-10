@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script src='js/jquery-3.2.0.js'></script>
+		<script>
+			//CSS:3种写法
+				$(function(){
+					//方法一
+//					$('.box').css('width',200);
+//					$('.box').css('height',200);
+//					$('.box').css('background','red');
+					//方法二(对象形式)
+//					$('.box').css({
+//						'width':200,
+//						'height':200,
+//						'background':'red'
+//					});
+					//方法三(链式操作，是对返回值进行操作)
+					$('.box').css('width',200).css('height',200).css('background','red')
+				})
+		</script>
+		<div class="box"></div>
+	</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin:0;
+			}
+			div{
+				position:relative;
+				width:400px;
+				height:400px;
+				padding:10px;
+				border:10px solid #000;
+				margin:20px auto;
+			}
+			span{
+				position:absolute;
+				left:20px;
+				top:20px;
+				width:200px;
+				height:200px;
+				padding:5px;
+				border:10px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<script src='js/jquery-3.2.0.js'></script>
+		<script>
+			//position() :获取匹配元素相对父元素的偏移(不能传参)；
+				//对可见元素有效
+				//为精确计算结果，请在补白、边框和填充属性上使用像素单位；
+				//返回:top和left;
+			$(function(){
+				console.log($('span').position())	//Object {top: 20, left: 20}
+				console.log($('span').position().left)	//20
+				console.log($('span').position({top:0,left:0}))////Object {top: 20, left: 20}
+			})
+			
+		</script>
+		<div>
+			<span></span>
+		</div>
+	</body>
+</html>

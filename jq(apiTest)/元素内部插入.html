@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.box{
+				width:200px;
+				height:200px;
+				border:1px solid #000;
+			}
+		</style>
+	</head>
+	<body>
+		<script src='js/jquery-3.2.0.js'></script>
+		<script>
+			//1.$(选择器)；
+			//2.$(function(){})
+			//3.$(html标签，[props])	:创建元素并包装成jq对象
+				//props是一个对象 可以操作创建的元素
+			//4.append(content|fn(index,html))
+				//往元素的后面添加新的元素；
+				//index参数为对象在这个集合中的索引值，html参数为这个对象原先的html值。
+				//返回一个HTML字符串
+				//父级.append(子集)
+			//5.appendTo(content)	:concent将所有匹配道德元素追加到另一个指定的元素元素集合中；
+				//子集.appendTo(父级)	：把子级添加到父级中，方便链式操作；
+			//6.prepend(content|fn) ：向每一个匹配的元素内部前置内容；
+				//父级prepend(子集)	
+			//7.prependTo(content)	:将所有匹配的元素前置到另一个、指定的元素元素集合中；
+				//子集prependTo(父级)
+			$(function(){
+				var newSpan=$('<span></span>',{
+					html:'我是创建出来的span',
+					css:{
+						display:'block',
+						color:'red',
+						lineHeight:30+'px'
+					}
+				})
+				$('.box').append(newSpan)
+				$('.box').append('who are you')
+				$('.box').append('<div>我是一个div</div>')
+				$('.box').append('<div>我是一个div!!!</div>')
+				$('.box').append(function(n,c){
+					console.log(n)
+					console.log(c)
+					return c='<div>我是函数返回的结构</div>'
+				})
+			})
+		</script>
+		<div class="box">
+			
+		</div>
+	</body>
+</html>

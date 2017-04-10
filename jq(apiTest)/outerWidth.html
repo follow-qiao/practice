@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin:0;
+			}
+			div{
+				position:relative;
+				width:400px;
+				height:400px;
+				padding:10px;
+				border:10px solid #000;
+				margin:20px auto;
+			}
+			span{
+				position:absolute;
+				width:200px;
+				height:200px;
+				padding:5px;
+				border:10px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<script src='js/jquery-3.2.0.js'></script>
+		<script>
+		//1. outerWidth([options]):包括边框；
+			//[options]:为true时 会计算外边据；
+		//2. innerWidth():不包括边框
+			$(function(){
+				console.log($('span').innerWidth())	//210
+				console.log($('span').outerWidth())  //230  			
+				console.log($('div').outerWidth())	//440
+				console.log($('div').outerWidth(true))	//1366 传参会计算外边据
+			})
+			
+		</script>
+		<div>
+			<span></span>
+		</div>
+	</body>
+</html>

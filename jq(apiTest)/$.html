@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="js/jquery-3.2.0.js"></script>
+		<script>
+//			1.$获取元素   	
+//			 	$(css选择器)   返回jq对象  ；类数组，获取的是一类元素
+//			  写原生元素
+//			  	$(element)
+//			 2.页面加载完传入元素
+//			  	$(function(){	//类似window.onload
+//			  	
+//			  	})
+//			  	$(document).ready(function(){})
+//			  	$().ready(function(){})
+			
+			$(function(){
+				console.log($('.box'))
+			})
+			$(document).ready(function(){
+				console.log($('.box'))
+			})
+			$().ready(function(){
+				console.log($('div'))
+			})
+		</script>
+		<div class="box"></div>
+		<div class="box"></div>
+	</body>
+</html>

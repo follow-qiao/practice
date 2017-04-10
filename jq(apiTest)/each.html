@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script src='js/jquery-3.2.0.js'></script>
+		each  :循环  遍历
+			each(function (index,item)){
+				index->下标；
+				item->原生元素；
+				this->原生元素；
+			}
+		<script>
+			$(document).ready(function(){
+				$('.box').each(function(index,item){
+					console.log(index);	//下标
+					console.log(item);//原生元素
+					console.log(this)//原生元素
+				})
+			})
+			
+			var arr=[1,2,3,4]
+			$(arr).each(function(index,item){
+				console.log(item) //1,2,3,4
+			})
+		</script>
+	</body>
+	<div class="box">1</div>
+	<div class="box">2</div>
+	<div class="box">3</div>
+	<div class="box">4</div>
+	<div class="box">5</div>
+	<div class="box">6</div>
+</html>

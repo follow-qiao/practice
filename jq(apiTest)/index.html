@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			strong,span{
+				display:inline-block;
+				width:60px;
+				height:60px;
+				background:red;
+			}
+		</style>
+	</head>
+	<body>
+		<script src='js/jquery-3.2.0.js'></script>
+		<script>
+//			index()	不传参:
+//					1.jq集合.index()默认返回的是同辈元素中第一次出现的位置		n;
+//					2.集合中某一个元素调用,返回的是同辈元素中的位置;
+//					传参:
+//						是该元素集合所在位置;
+			
+			$(function (){
+				console.log($('.box span').index())	//默认返回的是 2；
+				$('.box span').click(function (){
+					console.log($('.box span').index(this))	//该元素集合所在位置
+					console.log($(this).index()) //查找的是同辈中元素的位置
+				})
+			})
+		</script>
+		<div class="box">
+			<div>1</div>
+			<div>
+				<strong>0</strong>
+				<strong>0</strong>
+				<span>1</span>
+				<strong>0</strong>
+				<span>1</span>
+				<strong>0</strong>
+				<span>1</span>
+			</div>
+		</div>
+	</body>
+</html>

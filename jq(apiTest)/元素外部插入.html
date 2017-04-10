@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.bef{
+				height:30px;
+				background:red;
+			}
+		</style>
+	</head>
+	<body>
+		<script src='js/jquery-3.2.0.js'></script>
+		<script>
+		//1.after(content|fn)	:在每个匹配元素之后添加内容；fn必须返回字符串；已有的结构会起到剪切的作用；
+		//2.before(content|fn)	:在每个匹配元素之前添加内容；fn必须返回字符串；已有的结构会起到剪切的作用；
+		//3.insertAfter(content)	:把所有匹配的元素插入到另一个、指定的元素元素集合的后面。已有的结构会起到剪切的作用；
+		//4.insertBefore(content)	:把所有匹配的元素插入到另一个、指定的元素元素集合的前面。已有的结构会起到剪切的作用；
+			$(function(){
+				$('ul').after('<div>在ul之后添加div1</div>')	
+				
+				$('ul').after(function (){
+					return '<div>在ul之后添加div2</div>';
+				})
+				$('ul').before($('.bef'))		//在某元素之前 插入某元素
+				$('ul').after($('.bef'))		//在某元素之后 插入某元素
+				$('.bef').insertBefore($('ul'))	//把某元素 插入某元素之前
+				$('.bef').insertAfter($('ul'))	//把某元素 插入某元素之前
+			})
+		</script>
+		<div class="box">
+			<div class='aft'></div>
+			<ul>
+				<li>1</li>
+				<li>2</li>
+			</ul>
+			<div class="bef">我其实在ul之后，before操作之后我被剪切到ul之前</div>
+		</div>
+	</body>
+</html>

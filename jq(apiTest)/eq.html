@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script src='js/jquery-3.2.0.js'></script>
+		
+		<script>
+//			1.将jq对象 转换成 原生元素:	$(选择器)[下标]
+//			2.获取jq集合中指定对象,并且获取的还是jq对象	:$(选择器).eq(下标)
+			$(function (){	
+				console.log($('.box'))
+				console.log($('.box')[1])
+				console.log($('.box').eq(2))
+				$('.box').each(function(index,item){
+					console.log(item)
+				})
+			})
+		</script>
+		<div class="box">1</div>
+		<div class="box">2</div>
+		<div class="box">3</div>
+	</body>
+	
+</html>

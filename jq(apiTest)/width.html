@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin:0;
+			}
+			div{
+				position:relative;
+				width:400px;
+				height:400px;
+				padding:10px;
+				border:10px solid #000;
+				margin:20px auto;
+			}
+			span{
+				position:absolute;
+				width:200px;
+				height:200px;
+				padding:5px;
+				border:10px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<script src='js/jquery-3.2.0.js'></script>
+		<script>
+		//1. width([val|fn(index,height)])	:获取元素的宽度，不包括边框和padding;
+			//val:代表数值和字符串；
+			//index:代表接受元素的索引值;
+			//height:代表未改变的高度值;
+			$(function(){
+				
+				console.log($('span').width())	//200   获取元素的宽度，不包括边框和padding;
+				
+				$('span').width(function(n,c){
+					console.log(n)	//n:0 代表接受元素的索引值
+					console.log(c)	//c:200 代表未改变的高度值	
+					return c+100;	//300 返回修改之后的数值(改变了宽度)
+				})
+				
+				console.log($('span').width('300'))	// 300 返回的是一个jq对象
+				console.log($('span').width('400'))	//400 返回的是一个jq对象
+			})
+			
+		</script>
+		<div>
+			<span></span>
+		</div>
+	</body>
+</html>

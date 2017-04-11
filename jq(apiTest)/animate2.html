@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			#box {
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				left: 100px;
+				top: 100px;
+			}
+			#parent {
+				width: 300px;
+				height: 300px;
+				position: relative;
+				margin: 100px;
+				border: 1px solid #000;
+			}
+
+			.header {
+
+			}
+			.header_title {
+
+			}
+
+		</style>
+		<script src="js/jquery-3.2.0.js"></script>
+		<script src="js/jquery.easie-min.js"></script>
+		<script>
+			/*
+				jq的插件 对jq功能的扩展
+					插件是基于jq的，所以先引入jq，在引入插件
+			*/
+		</script>
+	</head>
+
+	<body>
+		<input type="button" value="测试" />
+		<div id="box"></div>
+		<script>
+			/*
+					http://www.jquery123.com/animate/
+
+					
+				animate() 默认的持续时间为400ms
+
+				animate(一组运动的css属性，持续时间，运动完成回调)
+
+				animate(一组运动的css属性，{对动画的配置})
+
+				使用一些方式来解决回调地狱
+				可以写成扁平化的方式
+			*/
+			//在运动的时候做一些事情
+			$("input").on('click',function (){
+				$("#box")
+					.animate({
+						left:500,
+						top: 500,
+						opacity:0
+					},{
+						duration: 2000,
+						complete(){
+							console.log("我运动结束了");
+						},
+						progress(){
+							// 动画过渡中执行的函数，无论多少个属性，只执行一个
+							console.log("progress");
+						},
+						step(now, fx){
+							//三个属性过渡中都会执行这个函数，每个属性过渡都会执行一次
+							console.log( now, fx );
+							console.log("move");
+						}
+					})
+			})
+
+		</script>
+	</body>
+</html>

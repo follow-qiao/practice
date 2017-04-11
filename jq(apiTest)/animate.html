@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.box{
+				width:100px;
+				height:100px;
+				background:red;
+			}
+		</style>
+	</head>
+	<body>
+		<script src='js/jquery-3.2.0.js'></script>
+		<script>
+		//animate(params,[speed],[easing],[fn])
+		//params:动画css集合；
+		//speed：slow normal fast还可以传具体时间；
+		//easing:插件，jq插件一定要写在引用jq后面；
+		//fn:在动画执行完执行的函数；
+		
+			$(function (){
+				$('input').on('click',function(){
+//					$('.box').animate({
+//						width:400+'px',
+//						height:400+'px'
+//					},'fast',function(){
+//						console.log('我执行完了！！')
+//					})
+					//动画执行顺序的写法
+					$('.box').animate({
+										width:400+'px'
+									})
+							.animate({
+										height:400+'px'
+									})
+							.animate({
+										opacity:0
+									})
+				})
+			})
+		</script>
+		<input type="button" value="按钮"/>
+		<div class="box">
+			
+		</div>
+	</body>
+</html>

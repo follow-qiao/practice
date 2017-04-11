@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			#box {
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				left: 100px;
+				top: 100px;
+			}
+			#parent {
+				width: 300px;
+				height: 300px;
+				position: relative;
+				margin: 100px;
+				border: 1px solid #000;
+			}
+
+			.header {
+
+			}
+			.header_title {
+
+			}
+
+		</style>
+		<script src="js/jquery-3.2.0.js"></script>
+		<script>
+			/*
+				on()
+
+				自定义事件
+
+				//命名空间
+			*/
+
+
+			var obj = {};
+
+			//工具函数集合
+
+			obj.tools = {
+				isArray(){
+
+				}
+			}
+
+			//处理数字相关
+			obj.num = {
+				n(){
+
+				}
+			}
+
+			// 处理字符串相关的
+
+			obj.str = {
+				s(){
+
+				}
+			}
+
+
+			console.log( obj );
+
+		// 同时使用以上提供的方法
+
+
+		</script>
+	</head>
+
+	<body>
+		<input type="button" value="测试" />
+		<div id="box"></div>
+		<script>
+			
+			/*$("#box").on("click",function (){
+				// 1. 让box变换背景  20行代码
+				$(this).css("background","red")
+
+				// 2. 让body变换背景 50行代码
+				$('body').css("background","yellow")
+
+			})*/
+
+			/*{ // 事件的命名空间模拟
+				click:{
+					xuqiu1:[fn],
+					xuqiu2:[fn]
+				}
+			}*/
+
+			$("#box").on("click.xuqiu1",function (){
+				// 1. 让box变换背景  20行代码
+				$(this).css("background","blue")
+			})
+
+			$("#box").on("click.xuqiu2",function (){
+				// 2. 让body变换背景 50行代码
+				$('body').css("background","yellow")
+			})
+
+			$("input").on('click',function (){
+				//需求： 让box变换背景  20行代码
+
+				$("#box").trigger("click.xuqiu2")
+			})
+		</script>
+	</body>
+</html>

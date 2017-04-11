@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			body{
+				margin:0;
+			}
+			img{
+				border:none;
+				vertical-align: top;
+			}
+			.bgc{
+				display:flex;
+				justify-content: center;
+				align-items: center;
+				width:760px;
+				height:500px;
+				padding-top: 90px;
+				margin:0 auto;
+				/*background:indianred;*/
+				/*background:url(img/bg.png) no-repeat;*/
+			}
+			.wrap{
+				position:relative;
+				width:420px;
+				height:320px;
+				border:5px solid #ff2;	
+				overflow:hidden;		
+			}
+			.pic{
+				position:absolute;
+				font-size:0;
+				left:0;
+			}
+			.pic img{
+				float:left;
+				width:420px;
+				height:320px;
+			}
+			.prev,.next{
+				position:absolute;
+				width:30px;
+				height:60px;
+				top:50%;
+				text-align:center;
+				margin-top:-30px;
+				font:20px/60px "微软雅黑";
+				color:rgba(255,255,255,0.5);
+				background-color: rgba(0,0,0,0.2);
+				display:none;
+			}	
+			.prev:hover,.next:hover{
+				background-color: rgba(0,0,0,0.9);
+				color:rgba(188,188,188,0.9);;
+			}
+			.next{
+				right:0;
+			}	
+			.navs{
+				position:absolute;
+				left:50%;
+				transform: translateX(-50%);
+				bottom:30px;
+				font-size:0;
+			}
+			.icon{
+				display:inline-block;
+				width:10px;
+				height:10px;
+				border-radius:10px;
+				margin-right:10px;
+				background:rgba(233,221,222,0.8);
+			}	
+			.navs span.active{
+				background:red;
+			}		
+			.navs .icon:nth-last-child(1){
+				margin-right:0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="bgc">
+			<div class="wrap">
+				<div class="pic">
+					<img src="img/1.jpg" />
+					<img src="img/2.jpg" />
+					<img src="img/3.jpg" />
+					<img src="img/4.jpg" />
+				</div>
+				<div class="prev"><</div>
+				<div class="next">></div>
+				<div class="navs">
+					<span class="icon active"></span>
+					<span class="icon"></span>
+					<span class="icon"></span>
+					<span class="icon"></span>
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-3.2.0.js"></script>
+		<script>
+			//获取图片父级
+			var imgsWrap=$('.pic');
+			//获取所有图片
+			var imgs=imgsWrap.children();
+			//获取所有小点
+			var dotes=$('.icon')
+			$('img:first').clone().appendTo(imgsWrap)	//往图片最后面添加第一张图片
+			imgs=imgsWrap.children();
+			var len=imgs.length;
+			var imgWidth=imgs.width();	//width()从一组数据中取值时，只会取的第一个元素的值；
+			imgsWrap.width(imgWidth*len);
+			
+			$('.wrap').on('mouseover',function(){
+				$('.next').css({display:'block'})
+				$('.prev').css({display:'block'})
+			})
+			$('.wrap').on('mouseout',function(){
+				$('.next').css({display:''})
+				$('.prev').css({display:''})
+			})
+			
+			var n=0;
+			$('.next').on('click',function(){	
+				if(imgsWrap.is(":animated")) return;
+				imgs.css({display:'block'})
+				imgsWrap.css({left:-n*imgWidth})
+				
+				n++;
+				if(n===len-1){
+					dotes.removeClass('active').eq(0).addClass('active')
+				}else{
+					dotes.removeClass('active').eq(n).addClass('active')
+				}
+				
+				//图片变化
+				imgsWrap.animate({left:-n*imgWidth},500,function (){
+					if(n===len-1){
+						imgsWrap.css({left:0})
+						n=0;
+					}
+				});
+			})
+			$('.prev').on('click',function(){
+				if(imgsWrap.is(":animated")) return;
+				imgs.css({display:'block'})
+				imgsWrap.css({left:-n*imgWidth})	
+				n--;
+				if(n===-1){
+					dotes.removeClass('active').eq(len-2).addClass('active')
+				}else{
+					dotes.removeClass('active').eq(n).addClass('active')
+				}
+				if(n===-1){
+					//图片
+					imgsWrap.css({left:-(len-1)*imgWidth})
+					n=len-2
+				}
+				imgsWrap.animate({left:-n*imgWidth},500);
+			})
+			
+			dotes.on('click',function(){
+				var index=$(this).index()
+				if(imgsWrap.is(':animated')) return;
+				if(n==index) return;
+				dotes.removeClass('active').eq(index).addClass('active');
+				imgs.css({display:'none'})
+				
+				//保存上一个，使当前有两个active
+				imgs.eq(n).css({display:'block'})
+				
+				if(dotes.is('.active')){
+					imgs.eq(index).css({display:'block'})
+				}
+				console.log(n,index)
+				if(n>index){
+					imgsWrap.css({left:-imgWidth})	//改变父级位置,两张图片互换位置，一定要初始化父级位置
+					imgsWrap.stop().animate({left:0},500)
+				}else{
+					imgsWrap.css({left:0})//改变父级位置
+					imgsWrap.stop().animate({left:-imgWidth},500)
+				}
+				//关联
+				n=index
+			})
+			
+		</script>
+	</body>
+</html>

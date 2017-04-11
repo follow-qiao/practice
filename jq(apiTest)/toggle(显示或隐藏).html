@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width:100px;
+				height:100px;
+				background:red;
+			}
+		</style>
+	</head>
+	<body>
+		<script src='jquery-3.2.0.js'></script>
+		<script>
+		//show([speed,[easing],[fn]])
+			//speed:"slow" "normal" "fast"获取者动画时长的毫秒数值；
+			//easing:用来指定切换效果，默认是"swing"，可用参数"linear"
+			//fn：功能函数
+			$(function (){
+				$('input').on('click',function(){
+//					$('div').hide(1000,'linear')
+//					$('div').show(1000,'linear')
+					$('div').toggle(1000,'linear')
+				})
+			})
+		</script>
+		<input type="button" value="按钮" />
+		<div></div>
+	</body>
+</html>

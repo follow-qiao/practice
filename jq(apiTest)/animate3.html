@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			#box {
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				left: 100px;
+				top: 100px;
+			}
+			#parent {
+				width: 300px;
+				height: 300px;
+				position: relative;
+				margin: 100px;
+				border: 1px solid #000;
+			}
+
+			.header {
+
+			}
+			.header_title {
+
+			}
+
+		</style>
+		<script src="js/jquery-3.2.0.js"></script>
+		<script src="js/jquery.easie-min.js"></script>
+		<script>
+			/*
+				jq的插件 对jq功能的扩展
+					插件是基于jq的，所以先引入jq，在引入插件
+			*/
+		</script>
+	</head>
+
+	<body>
+		<input type="button" value="start" />
+		<input type="button" value="stop" />
+		<input type="button" value="判断元素是否在进行动画" />
+		<div id="box"></div>
+		<div class="abc"></div>
+		<script>
+			//start
+			$("input").eq(0).on('click',function (){
+				$("#box").animate({
+					left:500
+				},10000,"linear");
+			})
+
+			$("input").eq(1).on('click',function (){
+				$("#box").stop();  //停止动画
+				//$("#box").finish();  // 停止动画，到目标点
+			})
+
+			$("input").eq(2).on('click',function (){
+				//console.log( $("#box").is(":animated") );
+
+				console.log( $("div:animated").length );  //获取正在运动的div
+
+
+				//console.log( $("#box").is("#box") );  // 判断前面的元素是否符合后面的选择器
+			})
+
+		</script>
+	</body>
+</html>

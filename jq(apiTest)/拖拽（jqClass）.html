@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+    #box {
+        width: 100px;
+        height: 100px;
+        background: red;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    
+</style>
+<script src="js/jquery-3.2.0.js"></script>
+<script>
+
+</script>
+</head>
+<body>
+
+    <div id="box"></div>
+    <script>
+    	(function($){
+	        class Drag {
+	            // element 要传入的是jq对象
+	            constructor(element){
+	                this.element = element;
+	                this.init();
+	            }
+	
+	            init(){
+	                this.element.on('mousedown',this.downFn.bind(this))
+	            }
+	
+	            downFn(ev){
+	                // this -> 实例
+	                this.disX = ev.pageX - this.element.offset().left;
+	                this.disY = ev.pageY - this.element.offset().top;
+	
+	                $(document).on('mousemove',this.moveFn.bind(this))
+	                $(document).on('mouseup',this.upFn.bind(this))
+	
+	                //发布事件
+	                this.element.trigger("down");
+	            }
+	
+	            moveFn(ev){
+	                this.element.css({
+	                    left: ev.pageX - this.disX,
+	                    top: ev.pageY - this.disY
+	                })
+	
+	                this.element.trigger("move");
+	            }
+	
+	            upFn(){
+	                $(document).off('mousemove mouseup');
+	                this.element.trigger("up"); 
+	            }    
+	        }
+	        //写插件(给jq扩展方法)
+            $.fn.drag=function(){
+            	console.log(this)	//这里的this就是指的调用方法的对象
+            	new Drag(this)	//创健实例传入当前对象(调用上面的方法)
+            	return this;	//为了还可一对这个对象继续操作
+            }
+        })(jQuery)
+    </script>
+    <script>
+    	//给move这个自定义事件添加一个监听器（函数）
+
+        // 在交互的瞬间要做一些事情，就去绑定一个事件处理函数进行监听
+		$('#box').on("move",function (){
+            console.log("move");       
+        })
+        $('#box').drag();
+       
+
+        
+
+    </script>
+</body>
+</html>

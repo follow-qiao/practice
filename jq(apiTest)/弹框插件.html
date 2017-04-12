@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.full-pop {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 300px;
+				padding:10px;
+				background: #fff;
+				border: 1px solid #ccc;
+			}
+			.dialogTop {
+				overflow: hidden;
+			}
+			.dialogTop .title{
+				float: left;
+				font-size: 12px;
+			}
+			.dialogTop .close{
+				float: right;
+			}
+			.content {
+				padding:30px 0;
+			}
+			.pop-btns {
+				text-align: right;
+			}
+		</style>
+	</head>
+	<body>
+		<script src='js/jquery-3.2.0.js'></script>
+		<script src='js/jquery.dialog.js'></script>
+		<input type="button" value="登录" />
+		<script>
+			$(function(){
+				opations={
+					width: 300,
+					height: 100,
+					left:100,
+					top: 100,
+					title:"hello",
+					content:"妙味课堂",
+					okhandle:function (){
+						alert("点击了确定")	
+					}
+				}
+				$('input').on('click',function(){
+					$.dialog(opations)
+				})
+			})
+
+		</script>
+		<!--<div class="full-pop">
+			<div class="dialogTop">
+				<div class="title">弹框头部</div>
+		        <span class="close" title="关闭">×</span>
+			</div>
+            <div class="content">
+               	这是您的弹框插件
+            </div>
+            <div class="pop-btns">
+            	<button class="ok"> 确定</button>
+            	<button class="cancel"> 取消</button>
+            </div>
+		</div>-->
+	</body>
+</html>

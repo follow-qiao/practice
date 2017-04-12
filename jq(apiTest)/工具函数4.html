@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+		//浅复制 对对象第一层中属性对应的值如果是对象不复制，直接赋值了
+			var obj={a:1,b:[1,2,3]}
+			var newObj={}
+			for(var attr in obj){
+				newObj[attr]=obj[attr]
+			}
+			newObj.b.push(100)
+			console.log(newObj)	//{a:1,b:[1,2,3,100]}
+			console.log(obj)	//{a:1,b:[1,2,3,100]}
+			
+		</script>
+	</body>
+</html>

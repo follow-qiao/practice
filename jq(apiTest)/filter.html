@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="js/jquery-3.2.0.js"></script>
+		<script>
+			//.filter( selector ):用来匹配元素选择器的字符串
+			//.filter( function(index) ):一个函数用来测试集合中某个元素，this代表当前要过虑的元素
+			//.filter( element )：用的dom元素去筛选
+			//.filter( jQuery object ):用jq对象筛选
+			$(function(){
+				$('li').filter(':even').css({background:'red'})
+				$('li').filter(function(index){
+					return $('strong',this).length==2;//this指的是li元素下strong元素的个数，true就继续往下走
+				}).css({background:'blue'})
+				$('li').filter(function(index){
+					return index % 6== 5
+				}).css({background:'yellow'})
+				$('li').filter($('#box')).css({background:'green'})
+			})
+		</script>
+			<ul>
+  <li><strong>list</strong> item 1 - one strong tag</li>
+  <li><strong>list</strong> item <strong>2</strong> -two <span>strong tags</span></li>   
+  <li>list item 3</li>
+  <li id="box">list item 4</li>
+  <li>list item 5</li>
+  <li>list item 6</li>
+</ul>
+	</body>
+</html>

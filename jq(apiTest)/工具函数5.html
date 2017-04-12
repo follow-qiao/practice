@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script src='js/jquery-3.2.0.js'></script>
+		<script>
+//			.extend()
+//					传参： $.extend(target,obj1,obj2)      // 浅合并
+//							$.extend(true,target,obj1,obj2) // 深合并
+//
+//							$.extend(target)  给$扩展属性的
+//								只能使用 $.属性 调用
+//
+//				给$扩展静态属性
+//					$.extend({})
+//					$.属性 = 值
+//					$.属性 = 值
+//					$.属性 = 值
+			$.extend({
+				abc:1,
+				fn:function(){
+					console.log(123)
+				}
+			})
+			$.fn()	//123
+			$.func=function(){
+				
+			}
+			console.log($.func)
+		</script>
+	</body>
+</html>

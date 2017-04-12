@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="js/jquery-3.2.0.js"></script>
+		<script>
+			//first():获取第一个
+			//last():获取最后一个
+			//hasClass(class):检查当前元素是否包含某个特定的类，返回布尔值；直接写class类名
+			$(function(){
+				console.log($('div').first()[0])//<div>1</div>
+				console.log($('div').last()[0])//<div>5</div>
+				console.log($('div').eq(1).hasClass('box'))	//true  直接写class类名
+				console.log($('div').eq(-1).hasClass('box'))	//false  检查倒数第一个
+			})
+		</script>
+		<div>1</div>
+		<div class="box">2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+	</body>
+</html>

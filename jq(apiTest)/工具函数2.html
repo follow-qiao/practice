@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script src='js/jquery-3.2.0.js'></script>
+		<script>
+		//jQuery.isFunction(obj)	:测试是否为函数的对象；
+			$(function (){
+				function fn(){
+					
+				}
+				console.log($.isFunction(fn),$.isFunction(1))	//true flse
+				
+		//jq中有两种调用方法的方式
+			//例：调用each
+				var arr=['a',1,2,3,4]
+				//1.先得到jq实例对象调用
+				$(arr).each(function (index,item){
+					console.log(item)
+				})
+				//2.调用函数的静态方法
+				$.each(arr,function (index,item){
+					console.log(item)
+				})
+				console.log($(arr))
+			})
+		</script>
+	</body>
+</html>

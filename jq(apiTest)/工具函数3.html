@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script src='js/jquery-3.2.0.js'></script>
+		<script>
+			//对象合并,返回被扩展的对象；
+			//js:Object.assign(target,[obj1,obj2,obj3...])	//浅合并
+			//jq:jQuery.extend(target,[obj1,obj2...])	//浅合并
+				//jQuery.extend(true,target,[obj1,obj2...])	//深合并
+			var obj={a:1}
+			var obj1={b:1}
+			var obj2={c:1}
+			var o=$.extend(obj,obj1,obj2)
+			console.log(o)	//{a:1,b:1,c:1}对象合并
+			console.log(o===obj)	//true	返回被扩展的对象
+			
+			//赋值一个对象
+			var newObj=$.extend({},obj)
+			console.log(newObj)	//{a:1,b:1,c:1}
+			console.log(newObj===obj)	//false
+		</script>
+	</body>
+</html>

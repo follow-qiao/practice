@@ -1,0 +1,774 @@
+
+body{
+	position:relative;
+}
+.head_top .width{
+	border-top:1px solid #eeeeee;
+	background-color:#f5f5f5;
+}
+.head_bottom{
+	height:81px;
+	width:1190px;
+	margin:0 auto;
+	
+}
+.head_bottom .title{
+	height:40px;
+	width:228px;
+	margin-top:17px;
+}
+.head_bottom .title h1 a{
+	width:139px;
+	height:0px;
+	padding-top:40px;
+	overflow:hidden;
+	background:url(../img1/xuebitu.png)
+}
+.head_bottom .more_market select{
+	width:78px;
+	height:18px;
+	margin-top:11px;
+	margin-left:9px;
+	line-height:18px;
+	color:#666666;
+	border:1px solid #e2e2e2;
+}
+.head_bottom .search{
+	float:right;
+	height:35px;
+	margin-top:20px;
+}
+.head_bottom .search_wrap{
+	position:relative;
+}
+.head_bottom .search input{
+	width:300px;
+	height:30px;
+	padding-top:1px;
+	line-height:30px;	
+	border:2px solid #f82800;
+}
+.search_wrap select{
+	width:60px;
+	height:30px;
+	color:#666666;
+	line-height:30px;
+	padding-top:1px;	
+}
+.head_bottom .search_man{
+	height:34px;
+	width:78px;
+	padding-top:1px;
+	line-height:34px;
+	font-size:14px;
+	color:#fff;
+	margin-right:3px;
+	text-align:center;
+	background-color:#f82800;
+}
+.head_bottom .search_all{
+	height:32px;
+	width:78px;
+	font-size:14px;
+	color:#f82800;
+	border:1px solid #ffb08b;
+	background-color:#fff0e7;
+	text-align:center;
+	line-height:32px;
+	padding-top:1px;
+}
+.content{
+	width:1140px;
+	margin:0 auto;
+}
+.content .title{
+	overflow:hidden;
+}
+.content .title h3{
+	width:132px;
+	height:0px;
+	overflow:hidden;
+	padding-top:21px;
+	margin:45px auto 56px;
+	background:red url(../img3/xuebitu.png) no-repeat;
+}
+.content .title .classify{
+	width:900px;
+	height:15px;
+	padding-left:20px;
+	background-color:#dadada;
+	margin:0 auto ;
+	*overflow:hidden;
+}
+.content .title .classify a{
+	font-size:12px;
+	line-height:14px;
+	padding-top:1px;	
+	margin-right:40px;
+	color:#4b4b4b;
+	*overflow:hidden;
+}
+.title .classify .all_type{
+	padding-right:22px;
+}
+.classify .classify_info .circle_icon{
+	width:6px;
+	height:6px;
+	margin-top:4px;
+	margin-right:1px;
+	margin-left:1px;
+	border-radius:6px;
+	background-color:#4b4b4b;
+	*overflow:hidden;
+}
+.content .trade{
+	position:relative;
+	width:1138px;
+	height:568px;
+	margin-top:10px;
+	border:1px solid #e8e8e8;
+}
+.trade .trade_pic{
+	width:400px;
+	padding:0px 18px 42px 20px;
+	
+}
+.trade_pic .big_pic{
+	display:block;
+	margin-top:20px;
+	background-color:#cad02f;
+}
+.trade_pic .small_pic{
+	margin-top:16px;
+	padding-left:1px;
+}
+.trade_pic .small_pic a{	
+	width:50px;
+	height:50px;
+	overflow:hidden;
+	margin-right:12px;
+	border:1px solid #fff;
+}
+.trade_pic .small_pic a:hover{
+	border-color: #ee1f5e;
+}
+.trade_pic .collect{
+	margin-top:22px;
+}
+.collect .collect_icon{
+	width:16px;
+	height:16px;
+	margin-right:5px;
+	background:url(../img3/xuebitu.png) 0 -21px no-repeat;
+	*overflow:hidden;
+}
+.collect .share_icon{
+	width:16px;
+	height:16px;
+	margin-right:5px;
+	background:url(../img3/xuebitu.png) -16px -21px no-repeat;
+	*overflow:hidden;
+}
+.collect .text{
+	font-size:12px;
+	line-height:19px;
+	color:#6c6c6c;
+}
+.collect .line{
+	width:1px;
+	height:16px;
+	margin-right:25px;
+	margin-left:25px;
+	background-color:#cccccc;
+	*overflow:hidden;
+}
+.trade .trade_info{
+	position:relative;
+	width:480px;
+	padding-top:21px;
+}
+.trade .trade_info h5{
+	height:56px;
+	font-size:16px;
+	word-spacing:7px;
+	line-height:21px;
+}
+.trade_info .deal{
+	width:480px;
+	height:76px;
+	background-color:#fff2e8;
+	border-bottom:1px solid #f5f5f5;
+}
+.deal .price{
+	padding-top:6px;
+	padding-left:10px;
+}
+.price .new_price span{
+	font-size:12px ;
+	line-height:34px;
+	margin-right:36px;
+	color:#6c6c6c;
+}
+.price .new_price .price_info{
+	color:#3c3c3c;
+	text-decoration:line-through;
+}
+.deal .price .num{
+	float:right;
+}
+.deal .price .num .comment{
+	width:66px;
+	height:42px;
+	text-align:center;
+	border-right:1px solid #ffe4d0;
+}
+.price .num .comment span{
+	display:block;
+}
+.deal .price .num  .border_r{
+	border-right:none;
+}
+.price .num .comment .comment_num {
+	font-size:14px;
+	line-height:20px;
+	font-weight:bold;
+	color:#6c6c6c;
+}
+.price .num .comment .comment_text{
+	font-size:12px;
+	line-height:24px;
+	color:#6c6c6c;
+} 
+.trade_info .taobao_price{
+	padding-left:10px;
+}
+.trade_info .taobao_price .text{
+	font-size:12px;
+	line-height:16px;
+	padding-bottom:8px;
+	margin-right:25px;
+	color:#6c6c6c;
+}
+.trade_info .taobao_price .price_num{
+	font-size:20px;
+	line-height:20px;
+	margin-right:6px;
+	color:#ff4400;
+}
+.trade_info .taobao_price .taobao_des{
+	width:56px;
+	height:18px;
+	font-size:12px;
+	line-height:18px;
+	color:#fff;
+	text-align:center;
+	background-color:#ff8e1b;
+	*overflow:hidden;
+}
+.trade_info .discount{
+	margin-top:8px;
+	padding-left:10px;
+}
+.discount .discount_des{
+	font-size:12px;
+	line-height:20px;
+	color:#6c6c6c;
+	margin-right:36px;
+}
+.discount .discount_icon{
+	width:16px;
+	height:16px;
+	margin-right:5px;
+	background:url(../img3/xuebitu.png) -32px -21px no-repeat;
+	*overflow:hidden;
+}
+.discount .discount_rule{
+	font-size:12px;
+	line-height:20px;
+	color:#3c3c3c;
+}
+.trade_info .dc{
+	margin-top:15px;
+	padding-left:10px;
+}
+.trade_info .dc .dc_text{
+	font-size:12px;
+	line-height:20px;
+	color:#3c3c3c;
+	margin-right:8px;
+}
+.trade_info .dc .dc_icon{
+	border:4px solid #fff;
+	margin-top:7px;
+	margin-right:16px;
+	border-top-color:#606060;
+	*overflow:hidden;
+}
+.trade_info .size .size_titel .line_icon{
+	width:430px;
+	height:11px;
+	margin-top:7px;
+	border-top:1px solid #d9d9d9;
+	*overflow:hidden;
+}
+.trade_info .size .size_text{
+	font-size:10px;
+	line-height:16px;
+	color:#6c6c6c;
+	*overflow:hidden;
+}
+.trade_info .size .size_info{
+	padding-left:10px;
+	font-size:12px;
+	line-height:20px;
+}
+.size_info .info_text{
+	font-size:12px;
+	line-height:20px;
+	color:#6c6c6c;
+	margin-right:36px;
+}
+.size_info .size_num{
+	font-size:12px;
+	line-height:24px;
+	color:#3c3c3c;
+	font-weight:bold;
+	padding-left:6px;
+	padding-right:6px;
+	padding-top:2px;
+	margin-right:5px;
+	border:1px solid #dcdcdc;
+}
+.trade_info .color{
+	margin-top:20px;
+	padding-left:10px;
+}
+.color .color_text{
+	font-size:12px;
+	line-height:20px;
+	margin-right:36px;
+	color:#6c6c6c;
+}
+.color .color_info{
+	width:31px;
+	height:31px;
+	padding:1px ;
+	border:2px solid #ff4400;
+}
+.trade_info .count{
+	margin-top:20px;
+	padding-left:10px;
+}
+.count .count_text {
+	font-size:12px;
+	line-height:20px;
+	margin-right:36px;
+}
+.count .count_info{
+	width:102px;
+	height:26px;
+	border:1px solid #cccccc;
+}
+.count_info .subtract{
+	width:26px;
+	height:26px;
+	font-size:24px;
+	font-weight:bold;
+	line-height:24px;
+	padding-top:2px;
+	border-right:1px solid #cccccc;
+	color:#cccccc;
+	text-align:center;
+	background-color:#ededed;
+}
+.count_info .count_num{
+	width:48px;
+	height:26px;
+	font-size:12px;
+	font-weight:bold;
+	line-height:24px;
+	padding-top:2px;
+	color:#666666;
+	text-align:center;
+}
+.count_info .add{
+	width:26px;
+	height:26px;
+	font-size:24px;
+	font-weight:bold;
+	line-height:24px;
+	padding-top:2px;
+	text-align:center;
+	color:#3c3c3c;
+	border-left:1px solid #cccccc;
+	background-color:#ededed;
+}
+.trade_info .buy {
+	margin-top:20px;
+	padding-left:10px;
+}
+.buy .buy_now{
+	width:134px;
+	height:34px;
+	font-size:16px;
+	line-height:34px;
+	color:#e5511d;
+	text-align:center;
+	margin-right:9px;
+	padding-top:4px;
+	border:1px solid #f0cab6;
+	background-color:#ffe4d0;
+}
+.buy .shopcar{
+	width:145px;
+	height:28px;
+	padding-top:12px;
+	padding-left:37px;
+	background-color:#ff4400;
+}
+.shopcar .shopcar_icon{
+	width:18px;
+	height:16px;
+	margin-right:10px;
+	background:url(../img3/xuebitu.png) -48px -21px no-repeat;
+	*overflow:hidden;
+}
+.shopcar .shopcar_text{
+	font-size:14px;
+	line-height:18px;
+	color:#fff;
+	*overflow:hidden;
+}
+.trade_info .promise {
+	padding-top:20px;
+	padding-left:10px;
+}
+.promise .promise_name{
+	font-size:12px;
+	line-height:16px;
+	color:#6c6c6c;
+	margin-right:36px;
+	*overflow:hidden;
+}
+.promise .promise_icon{
+	width:16px;
+	height:16px;
+	background:url(../img3/xuebitu.png) no-repeat;
+	*overflow:hidden;
+}
+.promise .promise_text{
+	width:79px;
+	height:16px;
+	line-height:16px;
+	color:#6c6c6c;
+	text-indent:7px;
+	*overflow:hidden;
+}
+.promise .sevenday_icon{
+	background:url(../img3/xuebitu.png) -66px -21px no-repeat;
+}
+.promise .nsurance_icon{
+	background:url(../img3/xuebitu.png) -82px -21px no-repeat;
+}
+.promise .quickpay_icon{
+	background:url(../img3/xuebitu.png) -98px -21px no-repeat;
+}
+.promise .credit_icon{
+	background:url(../img3/xuebitu.png) -114px -21px no-repeat;
+}
+.promise .remain_icon{
+	background:url(../img3/xuebitu.png) 0px -37px no-repeat;
+}
+.promise .ant_icon{
+	background:url(../img3/xuebitu.png) -16px -37px no-repeat;
+}
+.trade_right{
+	position:absolute;
+	width:200px;
+	top:-1px;
+	right:-1px;
+}
+.trade_info .report{
+	position:absolute;
+	width:46px;
+	height:24px;
+	top:-11px;
+	right:0;
+	font-size:12px;
+	line-height:24px;
+	color:#9a9a9a;
+	text-align:center;
+	background-color:#fff;
+}
+.sellor_vendor{
+	/*position:absolute;*/
+	width:198px;
+	height:303px;
+	border:1px solid #ffe2a3;
+	/*top:-1px;
+	right:-1px;*/
+}
+.sellor_vendor .gold_shop{
+	width:198px;
+	height:52px;
+	background:url(../img3/xuebitu.png) 0px -53px no-repeat;
+}
+.gold_shop .gold_icon{
+	position:absolute;
+	width:48px;
+	height:63px;
+	top:-11px;
+	right:5px;
+	background:url(../img3//xuebitu.png) 0px -105px no-repeat;
+}
+.taobao_shop{
+	width:168px;
+	height:140px;
+	border-bottom:1px dashed #e1e1e1;
+	padding-top:3px;
+	margin-left:20px;
+}
+.taobao_shop .crdit_rank{
+	margin-top:9px;
+}
+.taobao_shop h5{
+	font-size:12px;
+	line-height:30px;
+	color:#3c3c3c;
+}
+.taobao_shop .shop_text{
+	font-size:12px;
+	line-height:16px;
+	color:#666666;
+	margin-right:8px;
+}
+.crdit_rank .rank_icon{
+	width:16px;
+	height:13px;
+	margin-right:2px;
+	background:url(../img3/xuebitu.png)-32px -37px no-repeat;
+	overflow:hidden;
+	background-color:red;
+}
+.taobao_shop .manager{
+	margin-top:10px;
+}
+.manager .manager_des{
+	font-size:12px;
+	line-height:16px;
+	color:#3c3c3c;
+}
+.taobao_shop .link {
+	margin-top:6px;
+}
+.link .shop_text{
+	padding-top:2px;
+	margin-right:16px;
+}
+.link .manager_des{
+	position:relative;
+	width:57px;
+	height:13px;
+	margin-top:2px;
+	border:1px solid #fedd4b;
+	background-color:#ffeea2;
+}
+.link .manager_des .wang_icon{
+	position:absolute;
+	width:16px;
+	height:16px;
+	top:-3px;
+	left:-8px;
+	background:url(../img3/xuebitu.png) -120px -37px no-repeat;
+	*overflow:hidden;
+}
+.link .manager_des .link_text{
+	font-size:11px;
+	line-height:12px;
+	padding-top:1px;
+	color:#d22c00;
+	text-indent:9px;	
+}
+.taobao_shop .zizhi{
+	margin-top:12px;
+}
+.zizhi .zizhi_icon{
+	width:16px;
+	height:16px;
+	margin-right:5px;
+	background:url(../img3//xuebitu.png) -130px -21px no-repeat;
+	*overflow:hidden;
+}
+.zizhi .rmb_info{
+	width:58px;
+	height:0px;
+	padding-top:16px;
+	overflow:hidden;
+	background:url(../img3/xuebitu.png) -136px -37px no-repeat;
+}
+.shop_des{
+	margin-top:13px;
+	padding-left:20px;
+}
+.shop_des .describe{
+	width:43px;
+	height:31px;
+	padding-left:1px;
+	border-right:1px solid #ebebeb;
+}
+.shop_des .serve{
+	width:44px;
+	height:31px;
+	padding-left:14px;
+	border-right:1px solid #ebebeb;
+}
+.shop_des .logistics{
+	width:38px;
+	height:31px;
+	padding-left:14px;
+}
+.shop_des .des_text{
+	display:block;
+	font-size:12px;
+	line-height:14px;
+	padding-bottom:2px;
+	color:#666666;
+	*overflow:hidden;
+}
+.litre_icon{
+	width:8px;
+	height:7px;
+	*overflow:hidden;
+}
+.des_num{
+	width:18px;
+	text-align:center;
+	line-height:16px;
+	color:#ff4400;
+	margin-right:4px;
+}
+.litre_icon .trangle_icon{
+	border:4px solid #fff;
+	border-bottom-color:#ff4400;
+	*overflow:hidden;
+}
+.litre_icon .line_icon{
+	width:2px;
+	height:3px;
+	background-color:#ff4400;
+	margin-left:3px;
+}
+.sellor_vendor .load_in{
+	padding-left:20px;
+	padding-top:16px;
+}
+.sellor_vendor .load_in a{
+	font-size:12px;
+	line-height:28px;
+	color:#3c3c3c;
+	padding-left:13px;
+	padding-right:13px;
+	margin-right:5px;
+	border:1px solid #ededed;
+	white-space:nowrap;	
+}
+.trade_right .look{
+	padding:16px 13px 4px 15px;;
+	border-left:1px solid #e8e8e8;
+}
+.look_top{
+	padding-left:5px;
+}
+.look_top .look_text{
+	font-size:12px;
+	line-height:16px;
+	padding-top:2px;
+	color:#535353;
+}
+.look_pic{
+	margin-right:5px;
+	padding-top:13px;
+	
+}
+.look_pic li{
+	width:80px;
+	padding-bottom:6px;
+}
+.look_top .look_icon{
+	float:right;
+	width:12px;
+	height:12px;
+	margin-top:5px;
+	margin-right:12px;
+	background:url(../img3/xuebitu.png) -48px -37px no-repeat;
+	*overflow:hidden;
+}
+.look_pic strong{
+	display:block;
+	line-height:21px;
+	text-align:center;
+	color:#ff4805;
+}
+.lamp_info{
+	position:fixed;
+	*position:absolute;
+	width:36px;
+	height:633px;
+	top:0;
+	right:0;
+	background-color:#eeeeee;
+	border-right:1px solid #dddddd;
+}
+.lamp_info a,.lamp_info span{
+	display:block;
+	*overflow:hidden;
+}
+.lamp_info .info_icon{
+	width:18px;
+	height:18px;
+	margin-top:173px;
+	margin-left:9px;
+	background:url(../img3/xuebitu.png) -132px 0px no-repeat;
+}
+.lamp_info .line{
+	width:21px;
+	height:14px;
+	margin-left:7px;
+	border-bottom:1px dashed #bbbbbb;
+}
+.lamp_info .shop_car{
+	width:21px;
+	height:18px;
+	margin-top:7px;
+	margin-left:8px;
+	background:url(../img3/xuebitu.png) -150px 0px no-repeat;
+}
+.lamp_info .lamp_text{
+	width:16px;
+	font-size:12px;
+	line-height:16px;
+	color:#666666;
+	margin-left:12px;
+	margin-top:8px;
+}
+.lamp_info .write_icon{
+	width:16px;
+	height:16px;
+	margin-top:249px;
+	margin-left:10px;
+	background:url(../img3/xuebitu.png) -60px -37px no-repeat;
+}
+.lamp_info .border{
+	height:3px;
+	width:16px;
+	margin-left:10px;
+	margin-top:29px;
+	background-color:#666666;
+}
+.lamp_info .top{
+	width:16px;
+	height:14px;
+	margin-left:10px;
+	margin-top:1px;
+	background:url(../img3/xuebitu.png) -76px -37px no-repeat;
+}

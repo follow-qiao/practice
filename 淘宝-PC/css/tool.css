@@ -1,0 +1,12 @@
+.fl{
+	float:left;
+}
+.clearfix{
+	zoom:1;   /*ie6下用来清处浮动*/
+}
+.clearfix:after{
+	content:"";
+	display:block;
+	clear:both;
+	
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			.select {
+				width: 100px;
+				border: 1px solid #ccc;
+			}
+			.box {
+				width: 100px;
+				height: 100px;
+				background: red;
+			}
+		</style>
+		<script src="./src/vue.js"></script>
+	</head>
+
+	<body>
+		<!-- 自定义一个标签，标签代表是下拉框 -->
+		<div id="app">
+
+			<h2>异步组件</h2>
+			<custom-async></custom-async>
+		</div>
+
+		<script>
+
+
+		//等到请求服务端后得到的
+
+		/*function server(resolve){
+			setTimeout(function (){
+				var tem = "<div>hello</div>";
+				resolve({
+					template: tem
+				})
+			},2000)
+		}*/
+		//异步组件
+		Vue.component("custom-async",function (resolve){
+			/*resolve({
+				template:"<div>hello</div>"
+			})	*/
+			//server(resolve)
+
+			setTimeout(function (){
+				resolve({
+					template:"<div>hello</div>"
+				})	
+			},2000)
+		})
+		
+		new Vue({
+			el:"#app",
+			data:{
+				coms:'custom1'
+			}
+		})
+
+		</script>
+
+
+	</body>
+</html>

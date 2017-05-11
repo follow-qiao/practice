@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./src/vue.js"></script>
+	</head>
+
+	<body>
+		<div id="app">
+			<input type="button" value="按钮" @click="changeMessage" />
+			{{message}}
+			<input @keyup.13="addTodo" />
+			<ul>
+				<li v-for="value in list">
+				<input type="checkbox" v-model="value.bl" />
+					{{value.title}}
+				</li>
+			</ul>
+		</div>
+		<script>
+			/*
+				操作属性
+					取值  obj.attr
+					赋值  obj.attr = 值
+			*/
+
+			var vm = new Vue({
+				el: "#app",
+				data:{
+					message:"hello",
+					list:[
+						{title:1,bl:true},
+						{title:2,bl:false}
+					]
+				},
+				watch:{
+					message:function (){
+						console.log("改变了");		
+					}
+					/*,
+					list(){  //浅监控
+						console.log("list发生变化了");
+					}*/
+					,
+					list:{  //深度监控
+						deep:true,
+						handler(newValue){
+							console.log(newValue);
+						}
+					}
+				},
+				methods:{
+					changeMessage(){
+						this.message = '123';
+					},
+					addTodo(){
+						this.list.push({
+							title:Math.random()
+						})
+					}
+				}
+			})
+
+		</script>
+	</body>
+</html>

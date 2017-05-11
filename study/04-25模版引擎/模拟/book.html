@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		<div id="box">
+			<h2>data.title</h2>
+			if(data.list){
+	
+				<ul>
+					<li>123</li>
+					<li>123</li>
+					<li>123</li>
+					<li>123</li>
+				</ul>
+			}
+			<div>
+				这是文章的正文
+			</div>
+		</div>
+		<script>
+			var data = [
+					{
+						"title": "这是第1篇文章",
+						"content": "这是关于XXX课体验的文章",
+						"list": [
+							{
+								title:"新闻标题1"
+							},
+							{
+								title:"新闻标题1"
+							}
+						]
+					}
+				]
+
+			var html = `
+				<h2>${data[0].title}</h2>
+				`;
+			if( data[0].list ){
+				html+= `<ul>`
+				for( var i = 0; i < data[0].list.length; i++ ){
+					html+= `<li>${data[0].list[i].title}</li>`
+				}
+				html+= `</ul>`
+			}
+			html+= `
+				<div>
+					${data[0].content}
+				</div>
+			`
+
+			box.innerHTML = html;
+
+		</script>
+	</body>
+</html>

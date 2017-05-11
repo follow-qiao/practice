@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			.select {
+				width: 100px;
+				border: 1px solid #ccc;
+			}
+		</style>
+		<script src="./src/vue.js"></script>
+	</head>
+
+	<body>
+		<!-- 自定义一个标签，标签代表是下拉框 -->
+		<div id="app">
+			<h2>message在父组件中使用</h2>
+			<p>{{message}}</p>
+			<hr>
+			<h2>使用了子组件</h2>
+			<custom :mes="message" @abc="changeMessage"></custom>
+			<custom :mes="message" @abc="abcHandle"></custom>
+		</div>
+
+		<script>
+
+			Vue.component('custom',{
+				props:['mes'],
+				data(){
+					return {
+						dataMes : this.mes  //数据的初始值为mes
+					}
+				},
+				template: `
+				<div>
+					<input type="button" value="改变数据" @click="changeMesHandle" />
+					<p>{{dataMes}}</p>
+				</div>
+				`,
+				methods:{
+					changeMesHandle(){
+						var r = Math.random();
+						this.dataMes = r
+
+						this.$emit('abc', r);
+					}
+				}
+			})
+			//根组件
+			new Vue({
+				el:'#app',
+				data:{
+					message:"hello"
+				},
+				methods:{
+					changeMessage(value){
+						this.message = value;
+						console.log("子组件点击了");
+					},
+					abcHandle(){
+						console.log("哈哈哈");
+					}
+				}
+			})
+
+
+
+		</script>
+
+
+	</body>
+</html>

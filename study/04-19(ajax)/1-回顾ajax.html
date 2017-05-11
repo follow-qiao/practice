@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				ajax
+					请求地址，获取数据
+
+				流程：                                   readyState
+					1. 初始化ajax对象                         0
+					2. 准备地址，准备数据                     1
+					3. 请求地址，发送数据                     2
+					4. 接收数据（接收数据未完成）             3
+					5. 接收数据完成                           4
+			*/
+
+			function ajax(options){
+				//默认的参数
+				var defaults = {
+					url:"",
+					data:"",
+					method:"get",
+					success: null,
+					error: null
+				}
+				//合并对象
+				//Object.assign(defaults,options)
+				$.extend(true,defaults,options);
+
+				//url是必填的，在使用ajax之前先判断，如果没填，抛错
+				if( !defaults.url.trim() ){
+					//抛出错误
+					throw new Error("url为必填项");
+					return;
+				}
+
+				var xhr = new XMLHttpRequest();
+
+				//get方式，数据写在地址的？后面
+
+				if(defaults.method === "get"){
+					defaults.url = defaults.url+ "?"+ defaults.data;
+				}
+
+				xhr.open(defaults.method,defaults.url,true);
+
+				xhr.onload = function (){
+					//console.log(xhr.responseText);	 //存的是响应的数据
+					//看一下http状态码，来判断是什么情况
+					if( xhr.status >= 200 && xhr.status <= 307 ){
+						if( $.isFunction(defaults.success) ){
+							defaults.success(xhr.responseText)
+						}
+						
+					}else if( xhr.status === 404 ){
+						if( $.isFunction(defaults.error) ){
+							/*
+								xhr.status http状态码
+								xhr.statusText 状态短语
+							*/
+							defaults.error(xhr.status,xhr.statusText)
+						}
+						
+					}
+				};
+
+				if(defaults.method === "get"){
+					xhr.send();
+				}else{
+					/*
+						数据的格式
+							key=value&key=value
+					*/
+
+
+					xhr.setRequestHeader("Content-Type",'application/x-www-form-urlencoded');
+
+					//xhr.send("user=leo&password=123");
+					xhr.send(defaults.data);
+				}
+
+				
+
+			}
+
+		</script>
+		<script src="./js/jquery-3.2.0.js"></script>
+	</head>
+
+	<body>
+		<input type="button" value="获取数据" />
+
+		<script>
+			$("input").on("click",function (){
+				ajax({
+					url:"./php/post_json.php",
+					data:"user=leo",
+					method:"post",
+					success( data ){
+						console.log( data );
+					},
+					error(){
+						
+					}
+				});	
+			})
+		</script>
+	</body>
+</html>

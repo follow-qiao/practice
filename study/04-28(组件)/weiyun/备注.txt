@@ -1,0 +1,5 @@
+npm install -g vue-cli模块名字  -g global 全部安装
+
+安装之后，就可以在命令行使用模块提供的命令
+
+vue init webpack 自定义的文件名字

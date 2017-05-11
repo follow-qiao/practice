@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			.select {
+				width: 100px;
+				border: 1px solid #ccc;
+			}
+		</style>
+		<script src="./src/vue.js"></script>
+	</head>
+
+	<body>
+		<!-- 自定义一个标签，标签代表是下拉框 -->
+		<div id="app">
+			<custom-list abc="123"></custom-list>
+			<custom-list abc="456"></custom-list>
+		</div>
+
+		<script>
+			// 定义组件
+			// 组件在vue中是一个自定义的html标签
+			//全局定义组件
+
+			/*
+				组件理解为一个函数
+					组件使用后返回值 -> 模板
+					给组件传参
+						写在使用组件的行间，作为自定义行间属性	
+						在组件中接收，props接收
+			*/
+
+			/*
+				组件名
+					烤串命名
+					驼峰命名
+				在使用组件名字
+					烤串命名
+			*/
+
+			Vue.component('customList',{
+				props:['abc'],
+				template: `
+				<div>
+					<h2>{{abc}}</h2>
+					<ul>
+						<li>111</li>
+						<li>111</li>
+						<li>111</li>
+						<li>111</li>
+						<li>111</li>
+					</ul>
+				</div>
+				`
+			})
+
+			var title1 = '今日头条';
+			var list1 = [1,2,3,4];
+
+			var title2 = '娱乐新闻';
+			var list2 = ['a',"b"]
+
+			//根组件
+			new Vue({
+				el:'#app',
+				data:{
+					title1:title1,
+					list1:list1
+				}
+			})
+
+
+
+		</script>
+
+
+	</body>
+</html>

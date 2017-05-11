@@ -1,0 +1,54 @@
+.project .fa {
+	margin-right: 10px;
+}
+
+.el-menu--horizontal .logo:hover {
+  border-bottom: none;
+}
+
+.el-menu--dark .logo {
+  border-bottom: none;
+}
+
+.el-menu--dark .logo img {
+  vertical-align: middle;
+}
+
+.content-box {
+  position: relative;
+  top: 80px;
+  padding: 0px 15px;
+}
+
+.block-content {
+  width:300px;
+  background: #324057;
+  border-radius: 5px;
+  height: 180px;
+  margin-top: 30px;
+  color: #fff;
+  position: relative;
+  font-size: 20px;
+  text-align: center;
+  line-height: 180px;
+}
+
+.add-project-box {
+  width: 98%;
+  height: 48px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  position: relative;
+  top: 70px;
+  margin: 0px auto;
+  text-align: center;
+  line-height: 48px;
+  box-shadow: 0 0 2px rgba(0,0,0,.2);
+  font-size: 16px;
+}
+
+.add-project-box:hover {
+  cursor: pointer;
+  background: #eff2f7;
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./js/jquery-3.2.0.js"></script>
+		<script>
+			/*
+				在页面预先写好一个函数，按需加载一个文件后，在这个文件中执行预先写好的函数，并且传数据。
+				就可以在预先写好的函数中拿到数据。
+			*/
+			function render(data){
+				console.log( data );
+			}
+			document.onclick = function (){
+				var script = document.createElement("script");
+				script.src = "./test.txt";
+
+				document.body.append(script);	
+			}		
+		</script>
+	</head>
+
+	<body>
+
+	</body>
+</html>

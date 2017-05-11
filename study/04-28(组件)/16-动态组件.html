@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			.select {
+				width: 100px;
+				border: 1px solid #ccc;
+			}
+			.box {
+				width: 100px;
+				height: 100px;
+				background: red;
+			}
+		</style>
+		<script src="./src/vue.js"></script>
+	</head>
+
+	<body>
+		<!-- 自定义一个标签，标签代表是下拉框 -->
+		<div id="app">
+			<input type="button" value="按钮1" @click="tab(1)" />
+			<input type="button" value="按钮2" @click="tab(2)"/>
+			<input type="button" value="按钮3" @click="tab(3)"/>
+			<p :is='coms'></p>
+		</div>
+
+		<script>
+		//有三个组件，而是点击的时候才渲染对应的组件
+
+		//定义成局部组件
+
+		let custom1 = {template:"<div>custom1</div>"};
+		let custom2 = {template:"<div>custom2</div>"};
+		let custom3 = {template:"<div>custom3</div>"};
+		new Vue({
+			el:"#app",
+			data:{
+				coms:'custom1'
+			},
+			components:{  //局部组件
+				custom1,
+				custom2,
+				custom3
+			},
+			methods:{
+				tab(num){
+					this.coms = 'custom'+num;
+				}
+			}
+		})
+
+		</script>
+
+
+	</body>
+</html>

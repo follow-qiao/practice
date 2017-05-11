@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./src/vue.js"></script>
+	</head>
+
+	<body>
+		<div id="app">
+			{{message}}<br/>
+			{{reverseMessage}}
+		</div>
+		<script>
+			/*
+				操作属性
+					取值  obj.attr
+					赋值  obj.attr = 值
+			*/
+
+			var vm = new Vue({
+				el: "#app",
+				data:{
+					message:"hello"
+				},
+				computed:{  //存的是 计算 属性
+					reverseMessage: {
+						get(){
+							//取值的时候会触发get函数
+							return this.message.split('').reverse().join('');
+						},
+						set(newValue){
+							//设置这个属性的值会触发set函数
+							console.log("我被设置值了");
+							console.log( newValue );
+
+							this.message = newValue;
+						}
+					}
+				}
+			})
+
+			vm.message = 'miaov';
+			//计算属性赋值
+			vm.reverseMessage = 'ketang'
+
+			console.log( vm.message );
+			console.log( vm.reverseMessage );
+
+		</script>
+	</body>
+</html>

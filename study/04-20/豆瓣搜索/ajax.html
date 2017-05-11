@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			margin:0;
+			font-family:"微软雅黑";
+		}
+		p,h3{
+			margin:0;
+		}
+		ul,li{
+			margin:0;
+			padding:0;
+			list-style:none;
+		}
+		input{
+			border:0;
+			outline:none;
+		}
+		.clearFix:after{
+			display: block;
+			content:"";
+			clear:both;
+		}
+		.warp{
+			width: 420px;
+			margin:50px auto;
+			padding:120px 90px;
+			background: #fdb8a7;
+			background:linear-gradient(#fdb8a7,#fdd3bc);
+		}
+		.main{
+			width: 420px;
+			margin:0 auto;
+			background-color:#fff;
+			border-radius:8px;
+			overflow: hidden;
+		}
+		.header{
+			padding:73px 29px 22px;
+			margin-bottom:2px;
+			background: url(images/ajax_header.png) no-repeat;
+		}
+		.header form{
+			width: 360px;
+			height: 34px;
+			border:1px solid #fdbaa8;
+		}
+		.searchIpt{
+			float: left;
+			width:250px;
+			padding-left:10px;
+			height: 32px;
+			line-height: 32px;
+		}
+		.btnIpt{
+			float: left;
+			width: 100px;
+			height: 34px;
+			background-color:#fa805f;
+			color:#fff;
+			cursor:pointer;
+		}
+		.searchList>p{
+			padding-left: 30px;
+			font-size: 14px;
+			line-height: 44px;
+			color:#333;
+		}
+		.searchList>p span{
+			color:#fa805f;
+			padding:0 2px;
+		}
+		.searchList li{
+			border-top:1px solid #fedfd6;
+			padding:18px 27px 27px;
+		}
+		.searchList li h3{
+			font-weight: normal;
+			line-height: 41px;
+			color:#fa805f;
+		}
+		.searchList .listMian img{
+			float: left;
+		}
+		.searchList .listMian div{
+			float: left;
+			padding-left: 16px;
+			width: 224px;
+		}
+		.searchList .listMian p{
+			font-size: 12px;
+			color:#666;
+			line-height: 26px;
+		}
+		.searchList .listMian .smallT{
+			font-size: 14px;
+			color:#333;
+			line-height: 30px;
+		}
+
+		.pagination {
+			padding: 5px;
+			text-align: center;
+		}
+		.pagination a, .pagination span {
+			margin: 5px;
+			text-decoration: none;
+			cursor: pointer;
+			color: #333;
+		}
+		.pagination a:hover, .pagination span:hover {
+			color: #fa805f;
+		}
+		.pagination strong {
+			margin: 5px;
+			color: #fa805f;
+		}
+	</style>
+</head>
+<body>
+	<section class="warp">
+		<section class="main">
+			<header class="header">
+				<form action="">
+					<input type="text" class="searchIpt" placeholder="请输入要搜索的关键字">
+					<input type="button" value="搜索相关书籍" class="btnIpt">
+				</form>
+			</header>
+			<section class="searchList">
+				<p style="display: none;">正在搜索中……，请稍后！</p>
+				<p></p>
+				<ul>
+					<!--<li>
+						<h3>JavaScript权威指南</h3>
+						<div class="listMian clearFix">
+							<img src="images/ajax_pic.png" alt="">
+							<div >
+								<p class="smallT">弗拉纳根/机械工业出版社/2007-8</p>
+								<p>《JavasCript权威指南（第五片）》全面介绍了JavasCript语言的核心，以及Web浏览器中实现的遗留和标准的DOM...</p>
+							</div>
+							
+						</div>
+					</li>-->
+				</ul>
+				<div class="pagination">
+					<!--<span>首页</span>
+					<span>上一页</span>
+					<a href="javascript:;">1</a>
+					<strong>2</strong>
+					<a href="javascript:;">3</a>
+					<span>下一页</span>
+					<span>尾页</span>-->
+				</div>
+			</section>
+		</section>
+		
+	</section>
+
+	<script>
+		var searchIpt = document.querySelector('.searchIpt');
+		var btnIpt = document.querySelector('.btnIpt');
+		var searchList = document.querySelector('.searchList');
+		var searchHeader = searchList.querySelectorAll('p');
+		var searchList = searchList.querySelector('ul');
+		var pagination = document.querySelector('.pagination');
+
+		//搜索的关键字
+		var searchStr = '';
+
+		//总记录数
+		var total = 0;
+		//每页显示的条数
+		var prepage = 2;
+		//总页数
+		var pages = 0;
+		//当前页
+		var page = 1;
+
+
+		//点击搜索
+		btnIpt.onclick = function() {
+			searchStr = searchIpt.value;
+			if (searchStr == '') {
+				alert('请输入要搜索的关键字');
+				return;
+			}
+			sendRequest();
+		}
+
+		//发送请求
+		function sendRequest() {
+
+			var start = (page - 1) * prepage;
+			var count = prepage;
+
+			searchHeader[0].style.display = 'block';
+
+			var scriptElement = document.createElement('script');
+			scriptElement.src = 'https://api.douban.com/v2/book/search?q=' + searchStr + '&start=' + start + '&count=' + count + '&callback=resultsHandler';
+			document.body.appendChild(scriptElement);
+		}
+
+		//处理返回的结果
+		function resultsHandler(rs) {
+
+			total = rs.total;
+			pages = Math.ceil(total / prepage);
+
+			searchHeader[0].style.display = 'none';
+			searchHeader[1].innerHTML = '共搜索到<span>'+ total +'</span>条，共<span>'+ pages +'</span>页，当前第<span>'+ page +'</span>页';
+
+			if (rs.books.length) {
+				var html = '';
+				rs.books.forEach(function(v, index) {
+					var header = v.author[0]+'/'+v.publisher;
+					if (header.length > 23) {
+						header = header.substring(0, 20) + '...';
+					}
+					var summary = v.summary.length > 60 ? v.summary.substring(0, 57) + '...' : v.summary;
+					html += '<li>'+
+						'<h3>'+ v.title +'</h3>'+
+						'<div class="listMian clearFix">'+
+							'<img src="'+ v.images.small +'" alt="">'+
+							'<div >'+
+								'<p class="smallT">'+header+'</p>'+
+								'<p>'+ summary +'</p>'+
+							'</div>'+
+						'</div>'+
+					'</li>'
+				});
+				searchList.innerHTML = html;
+
+				renderPagination();
+			}
+		}
+
+		//渲染分页
+		function renderPagination() {
+			pagination.innerHTML = '';
+
+			if ( pages > 0 ) {
+				//首页
+				var firstPage = document.createElement('span');
+				firstPage.innerHTML = '首页';
+				firstPage.onclick = function() {
+					page = 1;
+					sendRequest();
+				}
+				pagination.appendChild(firstPage);
+				//上一页
+				var prevPage = document.createElement('span');
+				prevPage.innerHTML = '上一页';
+				prevPage.onclick = function() {
+					page = Math.max(--page, 1);
+					sendRequest();
+				}
+				pagination.appendChild(prevPage);
+
+				var showPage = paginationALG();
+				for (var i=showPage.start; i<=showPage.end; i++) {
+					if (i != page) {
+						var a = document.createElement('a');
+						a.innerHTML = i;
+						(function(i) {
+							a.onclick = function() {
+								page = i;
+								sendRequest();
+							}
+						})(i);
+						pagination.appendChild(a);
+					} else {
+						var strong = document.createElement('strong');
+						strong.innerHTML = i;
+						pagination.appendChild(strong);
+					}
+				}
+
+				//下一页
+				var nextPage = document.createElement('span');
+				nextPage.innerHTML = '下一页';
+				nextPage.onclick = function() {
+					page = Math.min(++page, pages);
+					sendRequest();
+				}
+				pagination.appendChild(nextPage);
+				//尾页
+				var lastPage = document.createElement('span');
+				lastPage.innerHTML = '尾页';
+				lastPage.onclick = function() {
+					page = pages;
+					sendRequest();
+				}
+				pagination.appendChild(lastPage);
+			}
+		}
+
+		function paginationALG(showPagesCount) {
+			var showPagesCount = showPagesCount || 5;
+			var start = 0;
+			var end = 0;
+
+			//中间值
+			var v = Math.floor(showPagesCount / 2);
+
+			start = page - v;
+			if (start < 1) {
+				start = 1;
+			}
+
+			end = start + showPagesCount - 1;
+			if (end > pages) {
+				end = pages;
+			}
+
+			start = end - showPagesCount + 1;
+			if (start < 1) {
+				start = 1;
+			}
+
+			return {
+				start: start,
+				end: end
+			}
+		}
+	</script>
+</body>
+</html>

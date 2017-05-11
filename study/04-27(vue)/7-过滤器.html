@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./src/vue.js"></script>
+	</head>
+
+	<body>
+		<div id="app">
+			{{ message | formatData }}
+			{{ message | formatData }}
+			{{ message | formatData }}
+			{{ message | formatData }}
+		</div>
+		<script>
+			/*
+				过滤器
+
+					| 管道符
+				语法：表达式 | 过滤函数
+			*/
+
+			var vm = new Vue({
+				el: "#app",
+				data:{
+					message:"2017--04+++27"
+				},
+				filters:{
+					formatData(val){// 过滤器函数总接受表达式的值作为第一个参数。
+						var re = /\d+/g;
+						var arr = val.match(re)
+						return arr[0]+'年'+arr[1]+'月'+arr[2]+'日';
+					}
+				}
+			})
+
+		</script>
+	</body>
+</html>

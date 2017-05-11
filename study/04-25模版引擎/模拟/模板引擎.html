@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./src/template-web.js"></script>
+	</head>
+
+	<body>
+		<div id="box">
+			
+		</div>
+		<script id="temp" type="text/html">
+			<h2><%= abc.title %></h2>
+				<%if(abc.list){%>
+					<ul>
+						<%for(var i = 0; i < abc.list.length; i++){%>
+							<li><%=abc.list[i].title%></li>
+						<%}%>
+					</ul>
+				<%}%>
+			<div>
+				这是文章的正文
+			</div>
+		</script>
+		<script>
+			/*
+				数据 + html模板 -> 视图
+
+				需要有个工具将数据和模板结合起来，做这件事的工具称之为模板引擎
+
+				需要用到模板引擎提供的语法，告诉模板引擎这个位置渲染什么样的数据
+			*/
+
+			var data = {
+						"title": "这是第2篇文章",
+						"content": "这是关于XXX课体验的文章",
+						"list": [
+							{
+								title:"新闻标题1"
+							},
+							{
+								title:"新闻标题2"
+							}
+						]
+					}
+
+			setTimeout(function (){
+				var html = template('temp',{abc:data})
+
+			box.innerHTML = html;	
+
+		</script>
+	</body>
+</html>

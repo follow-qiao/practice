@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+
+
+			function fn(data){
+				console.log(data);
+			}
+
+		</script>
+	</head>
+
+	<body>
+		<input id="search" />
+		<input type="button" id="btn" value="搜索" />
+		<script>
+			btn.onclick = function (){
+				var value = search.value;		
+
+				var script = document.createElement("script");
+				script.src = 'https://api.douban.com/v2/movie/search?q='+value+"&callback=fn";
+
+				document.body.appendChild(script);
+			}
+		</script>
+	</body>
+</html>

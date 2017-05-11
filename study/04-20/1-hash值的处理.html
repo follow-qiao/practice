@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				页面初始化，先拿到hash值，
+
+					有hash
+						地址中#后面有内容
+					没有hash
+						地址中#后面没有内容
+						给变量设置默认值
+
+				刷新页面之后依然能够获取到点翻到的页码
+
+				注意：
+					只要页面刷新一次，都会执行页面中的js代码，变量都会重新声明一次
+			*/
+			var hash = window.location.hash;  //#内容
+			var num;
+
+			if(!hash){
+				num = 1;
+			}else{
+				num = hash.slice(1)
+			}
+
+
+
+			var page = 0;
+			window.onload = function(){
+				var spans = document.getElementsByTagName("span");
+
+				//可能要去请求当前页码的数据
+
+				spans[num-1].style.background = "red";
+				
+				for( var i = 0; i < spans.length; i++ ){
+					spans[i].index = i;
+					spans[i].onclick = function (){
+						console.log("翻页");
+						for( var i = 0; i < spans.length; i++ ){
+							spans[i].style.background = '';
+						}
+						this.style.background = 'red';
+
+						page = this.index;
+
+						window.location.hash = page+1;
+
+						console.log( page+1 );	
+					};
+				}
+			};
+
+
+		</script>
+	</head>
+
+	<body>
+		<div id="pages">
+			<span>1</span>
+			<span>2</span>
+			<span>3</span>
+			<span>4</span>
+			<span>5</span>
+		</div>
+	</body>
+</html>

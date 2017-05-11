@@ -1,0 +1,19 @@
+请求地址：http://localhost:8088/2017-04-19/php/new.php
+method get
+请求数据：
+type   数据     school | world   必填项
+start 开始下标         0          可选
+end   结束下标         4          可选
+响应数据
+类型 json
+
+status 状态  0返回数据代表成功   1代表返回数据失败
+count  数据总数     
+data   数组
+    {
+        num  当前的数据的下标
+        job  招聘类型
+        pNum  招聘人数
+        ask  岗位要求
+        data  发布日期
+    }

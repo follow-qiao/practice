@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<!--请求根目录下-->
+		<!-- <script src="/js/jquery-3.2.0.js"></script> -->
+		<!--相对于当前文件的路径-->
+		<script src="./js/jquery-3.2.0.js"></script>
+		<script>
+			/*
+				请求，使用localhost请求
+			*/
+		</script>
+	</head>
+
+	<body>
+		<div>
+			<p>用户名:<input type="text" id="userName" /><span id="mes"></span></p>
+			<p>密码:<input type="password" /></p>
+			<p><input type="button" value="登录" /></p>
+		</div>
+		<script>
+			/*
+				后端会告诉你发送请求的地址
+					http://localhost:8088/2017-04-18/testphp/get.php
+						判断用户名是存在的，用在登录注册
+					请求参数：
+						user 		用户名  必须的
+						passworld 	密码    可选
+
+
+				前后端会约定一个key值用来存不同的数据，key值尽量的要有语义化，这个key值通常称之为叫做字段
+					userName
+
+
+				总结：
+					通过ajax去请求一个后端提供的地址，后端需要带上参数，你要给参数。
+					请求完成后，会触发一个函数，通过这个函数来获取到响应的数。拿这个数据做判断或者展示在页面中。
+			*/
+
+			$("#userName").on("blur",function (){
+				//验证用户名，向一个地址发请求，带上参数
+
+				$.ajax({
+					url:"http://localhost:8088/2017-04-18/testphp/get.php",
+					data:{
+						user: $(this).val()
+					},
+					success(data){
+						console.log( data );
+
+						$("#mes").html(data).css("background","red");
+					}
+				});
+			})
+
+		</script>
+	</body>
+</html>

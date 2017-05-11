@@ -1,0 +1,48 @@
+.doc {
+  position: relative;
+  top: 100px;
+  z-index: 1;
+  overflow-x: hidden;
+}
+.doc-nav {
+  position: fixed;
+  z-index: 10;
+  top: 100px;
+  left: 0;
+  bottom: 0;
+  padding: 0px 0 30px 60px;
+  width: 260px;
+  margin-right: 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #fff;
+}
+
+.doc-nav .main-menu {
+  margin-bottom: 20px;
+  padding-left: 0;
+  line-height: 1.8em;
+}
+
+.main-menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding-left: 1em;
+}
+
+.main-menu ul span {
+  color: #7f8c8d;
+}
+
+
+.main-menu ul a {
+  font-weight: bold;
+}
+
+.doc-view {
+  position: relative;
+  padding: 2.2em 0;
+  max-width: 800px;
+  margin: 0 auto;
+  overflow-y: scroll;
+}

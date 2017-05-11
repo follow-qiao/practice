@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./js/jquery-3.2.0.js"></script>
+		<script>
+			/*
+				1. 使用代理的方式
+					访问能访问到的php文件
+					使用可以访问到的php文件做代理
+
+				2. 
+			*/
+		$.ajax({
+			url:"http://localhost:8088/2017-04-20/php/proxy.php",
+			success(data){
+				console.log( data );
+			}
+		})
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

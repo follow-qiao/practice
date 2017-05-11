@@ -1,0 +1,6 @@
+http://www.ruanyifeng.com/blog/2012/05/internet_protocol_suite_part_i.html
+
+
+wamp的根目录是 www下，也就是http://localhost:8088/访问，访问的就是www目录下的内容
+请求的默认是index.html或index.php，因为这请求的时候目录下有index.html或index.php，可以不用写这两个文件名
+

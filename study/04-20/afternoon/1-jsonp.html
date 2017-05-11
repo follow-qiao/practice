@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				jsonp 
+					跨域的一种方式
+					
+					需要后端把数据格式设置为jsonp的形式
+
+				1. 动态的生成script标签
+				2. 让script标签的src加载指定的地址
+				3. 放在body中
+				4. 指定一个回调函数
+
+
+			*/
+
+			function fn(data){
+				console.log(data);
+			}
+
+			document.onclick = function (){
+				var script = document.createElement("script");
+				script.src = 'https://gsp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?cb=fn&wd=123';
+				document.body.appendChild(script);
+			};
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

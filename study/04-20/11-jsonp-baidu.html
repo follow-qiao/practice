@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./js/jquery-3.2.0.js"></script>
+		<script>
+			/*
+				在页面预先写好一个函数，按需加载一个文件后，在这个文件中执行预先写好的函数，并且传数据。
+				就可以在预先写好的函数中拿到数据。
+
+				http://baike.baidu.com/link?url=zpAO4UHBnUtdqRl_aWgbLeZ9J9x3ROL4ba_jDnBA6Q6KSGfuLhnRIGtGOr9VmXyJts69pbl5nB8wlSm7TASDsa
+			*/
+			/*
+				1. 动态生成script标签
+				2. 在请求的地址后面写上回调函数的名字（字符串），不是指函数
+				3. 回调函数是全局的,保证能够执行这个回调函数
+			*/
+					
+		</script>
+	</head>
+
+	<body>
+		<input id="search" />
+		<ul id="box">
+			<li>
+				<a href=""></a>
+			</li>
+		</ul>
+		<script>
+			function fn(data){
+				var html = data.s.map(function (item){
+					return `
+						<li>
+							<a href="https://www.baidu.com/s?word=${item}">${item}</a>
+						</li>
+					`
+				});
+
+				$("#box").html(html);
+			}
+			$("#search").on("input",function (){
+				var script = document.createElement("script");
+				script.src = 'https://gsp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?cb=fn&wd='+$(this).val();
+				document.body.appendChild(script)	
+			})
+		</script>
+		<script>
+			
+		</script>
+	</body>
+</html>

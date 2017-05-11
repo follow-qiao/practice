@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			.select {
+				width: 100px;
+				border: 1px solid #ccc;
+			}
+			.box {
+				width: 100px;
+				height: 100px;
+				background: red;
+			}
+		</style>
+		<script src="./src/vue.js"></script>
+	</head>
+
+	<body>
+		<!-- 自定义一个标签，标签代表是下拉框 -->
+		<div id="app">
+			<!-- <input type="button" value="按钮1" />
+			<input type="button" value="按钮2" />
+			<input type="button" value="按钮3" />
+			<div></div> -->
+			<!-- <custom-list></custom-list> -->
+			<custom-abc>
+				<custom-list></custom-list>
+			</custom-abc>
+		</div>
+
+		<script>
+		//有三个组件，而是点击的时候才渲染对应的组件
+
+		//定义成局部组件
+
+		/*Vue.component('custom-list',{
+			template:`
+				<ul>
+					<li>123</li>
+				</ul>
+			`
+		});*/
+		Vue.component('custom-abc',{
+			template:`
+				<div>
+					custom-abc
+					<custom-list></custom-list>
+					<slot></slot>
+				</div>
+			`,
+			components:{
+				'custom-list': {
+					template:`
+						<ul>
+							<li>123</li>
+						</ul>
+					`
+				}
+			}
+		});
+
+		new Vue({
+			el:"#app",
+			components:{  //局部组件
+				'custom-list':{
+					template:`<div>我是父组件的custom-list</div>`
+				}
+			}
+		})
+
+		</script>
+
+
+	</body>
+</html>

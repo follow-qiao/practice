@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			.select {
+				width: 100px;
+				border: 1px solid #ccc;
+			}
+			.box {
+				width: 100px;
+				height: 100px;
+				background: red;
+			}
+		</style>
+		<script src="./src/vue.js"></script>
+	</head>
+
+	<body>
+		<!-- 自定义一个标签，标签代表是下拉框 -->
+		<div id="app">
+			
+			<div class="box" id="box"></div>
+
+			<custom-dialog :title="'提醒'" @close="changeDiv">
+				
+				<div slot="beizhu">我是用来定义备注的模板</div>
+
+				<p>我是第一个弹框的内容</p>
+				<template slot="footer">
+					<span>确定</span>
+					<span>取消</span>
+				</template>
+				<p>我是第一个弹框的内容</p>
+			</custom-dialog>
+			<hr>
+			<custom-dialog>
+				<p>我是第2个弹框的内容</p>
+				<p>我是第2个弹框的内容</p>
+				<p>我是第2个弹框的内容</p>
+				<p>我是第2个弹框的内容</p>
+			</custom-dialog>
+		</div>
+
+		<script>
+			/*
+				第一弹框中内容为：
+					<p>我是第一个弹框的内容</p>
+				第一弹框中内容为：
+					<p>我是第2个弹框的内容</p>
+					<p>我是第2个弹框的内容</p>
+					<p>我是第2个弹框的内容</p>
+					<p>我是第2个弹框的内容</p>
+
+				在使用组件的时候，把需要html结构混合在组件中
+
+				在子组件中有一个插槽 预留了一个标签 slot
+				插槽标签 <slot>默认的内容</slot>
+
+				混合父组件的内容与子组件自己的模板，这个过程被称为内容分发
+				使用特殊的 <slot> 元素作为原始内容的插槽。
+
+				
+				如果组件中没有要混合的结构，展示 “默认内容”
+
+				给slot起名字
+
+				可复用组件应当定义一个清晰的公开接口。
+
+				Vue 组件的 API 来自三部分
+					Props 传递数据给组件
+					Events 自定义监听子组件内部变化事件
+					Slots 混合模板到子组件中
+
+
+			*/
+			Vue.component('custom-dialog',{
+				//props:['title'],
+				props:{
+					title:{
+						type:String,
+						default:"我是一个标题"
+					}
+				},
+				data(){
+					return {
+						
+					}
+				},
+				template: `
+					<div>
+						<h2>
+							{{title}}
+							<span @click="closeHandle">X</span>
+						</h2>
+						<div>
+							<slot>
+								<div>
+									<div>hahahah</div>
+								</div>
+							</slot>
+						</div>
+						<hr/>
+						<div>
+							<slot name="beizhu">
+								<span>备注</span>
+							</slot>
+						</div>
+						<hr/>
+						<div>
+							<slot name="footer">
+								<input type="button" value="确定" />
+								<input type="button" value="取消" />
+							</slot>
+						</div>
+					</div>
+				`,
+				methods:{
+					closeHandle(){
+
+
+
+						this.$emit("close")
+					}
+				}
+			})
+			//根组件
+			new Vue({
+				el:'#app',
+				data:{
+					message:"提醒"
+				},
+				methods:{
+					changeDiv(){
+						box.style.background = 'blue';
+					}
+				}
+			})
+
+
+
+		</script>
+
+
+	</body>
+</html>

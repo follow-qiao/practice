@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<!--请求根目录下-->
+		<!-- <script src="/js/jquery-3.2.0.js"></script> -->
+		<!--相对于当前文件的路径-->
+		<script src="./js/jquery-3.2.0.js"></script>
+	</head>
+
+	<body>
+		<div>
+			<p>用户名:<input type="text" id="userName" /><span id="mes"></span></p>
+			<p>密码:<input type="password" /></p>
+			<p><input type="button" value="登录" /></p>
+		</div>
+		<script>
+			/*
+				使用ajax发送数据，做一些什么事情？
+				
+				拿jq来举例：
+					1. 使用$.ajax这个函数发送数据
+					2. 发送地址，发送的数据
+					3. 监控响应完成的函数
+
+				原生中怎么写？
+					1. 得到一个ajax对象
+
+			*/
+
+			$("#userName").on("blur",function (){
+				//得到ajax对象
+				var xhr = new XMLHttpRequest();
+
+				console.log( xhr );
+
+				//准备发送的地址，发送的数据
+				/*
+					xhr.open(method，action，isAsyn)
+					参数：
+						1. method 请求方式  get post
+							get方式：
+								发送的数据写在地址的问号（？）后面
+									格式：key=value&key=value&key=value
+							post方式
+
+						2. action 请求地址  
+						3. 是否是异步 true false
+				*/
+
+				xhr.open(
+						"post",
+						'./testphp/get.php?user='+$(this).val()+"&password=123",
+						true
+					);
+			
+				//发送
+				xhr.send();
+			})
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./js/jquery-3.2.0.js"></script>
+		<script>
+			//http://localhost:8088/2017-04-20/3-%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82.html
+		/*
+			XMLHttpRequest cannot load http://2017.miaov.com/question/ajax/randomquestion. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:8088' is therefore not allowed access.
+
+			提示不允许跨域访问
+		*/
+		$.ajax({
+			url:"http://2017.miaov.com/question/ajax/randomquestion",
+			success(data){
+				console.log( data );
+			}
+		})
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

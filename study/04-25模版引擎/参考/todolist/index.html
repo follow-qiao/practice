@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>todos</title>
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script src="jquery-3.2.0.js"></script>
+</head>
+
+<body>
+    <section class="todoapp">
+        <div>
+            <header class="header" >
+                <h1>todos</h1>
+                <input class="new-todo" placeholder="请输入内容" value="">
+            </header>
+            <section class="main">
+                <input class="toggle-all" type="checkbox" checked="">
+                <ul class="todo-list">
+                    <!--<li class="completed">
+                        <div class="view">
+                            <input class="toggle" type="checkbox" checked="">
+                            <label>多多对对对</label>
+                            <button class="destroy"></button>
+                        </div>
+                        <input class="edit" value="多多对对对">
+                    </li>-->
+                </ul>
+            </section>
+            <footer class="footer">
+	            <span class="todo-count">
+	            	<strong>0</strong>
+	            	<span>条未选中</span>
+	            </span>
+            </footer>
+        </div>
+    </section>
+    <script>
+    	//存放数据的数组
+    	var data=[];
+    	//当按回车时发生的一些事情
+    	$(window).keydown(function(event){
+    		switch(event.keyCode){
+    			case 13:
+    			if($('.new-todo').val()===''){
+    				alert('请输入内容')
+    			}else{
+    				getData();
+    				$('.new-todo').val('');		//清空input
+    				for(var i=0;i<data.length;i++){
+    					var content=createNode(i);
+    				}  		 				
+    				$('ul').append(content)
+    				//用off()是移除之前on身上的事件;index()查找所在父级下同级的位置
+    				$('ul').off().on('click','.destroy',function(){
+						var index=$(this).parent().parent().index()
+						//删除节点
+						$(this).parent().parent().remove()
+						//数据删除
+						data.splice(index,1)
+			    	})
+					
+    			};	
+    		}  		
+    	})
+    	
+    	
+    	function getData(){
+    		var list=$('.new-todo').val();
+    		//往数组里添加数据
+    		data.push(list) 		
+    	}
+    	function createHtml(num){
+    		html=`
+    			<div class="view">
+                    <input class="toggle" type="checkbox" checked="">
+                    <label>${data[num]}</label>
+                    <button class="destroy">${num}</button>
+                </div>
+                <input class="edit" value=${data[num]}>
+                `
+                return html;
+    	}
+    	
+    	function createNode(num){
+    		var li=$('<li></li>')
+    		li.addClass("completed");
+    		li.html(createHtml(num))  	
+    		return li;
+    	}
+    </script>
+</body>
+
+</html>

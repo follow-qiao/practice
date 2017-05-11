@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./js/jquery-3.2.0.js"></script>
+		<script>
+			/*
+				1. 使用代理的方式
+					访问能访问到的php文件
+					使用可以访问到的php文件做代理
+
+				2. 设置头信息
+					在要访问的php文件中设置一个头
+						Access-Control-Allow-Origin: "localhost.com"
+
+					下午演示
+
+				3. jsonp
+					json+padding => jsonp
+
+				标签可以跨域访问：
+					link
+					script
+					img
+					a
+
+					每一个标签都有其自己的功能，不关心文件的后缀名，能不能把这个内容使用标签对应的功能来解析
+
+			*/
+			
+		</script>
+	</head>
+
+	<body>
+		<input type="button" value="加载a文件" />
+		<input type="button" value="加载b文件" />
+		<script>
+			/*
+				按需加载文件
+					可以不把js文件一次性全加载进来，在需要的时候加载
+			*/
+			$("input:eq(0)").on("click",function (){
+				//加载a.js	
+				//动态生成script标签
+				var script = $("<script src='./src/a.js'><\/script>");
+
+				$("body").append(script);
+
+			})
+			$("input:eq(1)").on("click",function (){
+				//加载b.js	
+				var script = $("<script src='./src/b.js'><\/script>");
+
+				$("body").append(script);
+			})
+		</script>
+		<!-- <script src="./a.txt"></script> -->
+	</body>
+</html>

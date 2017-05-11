@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				写页面
+					1. 数据直接写死在页面中
+					2. 自定义数据，通过动态的生成标签，展示数据
+					
+					3. 向后端请求数据
+			*/
+		</script>
+	</head>
+
+	<body>
+		<ul id="box">
+			<!-- <li>123</li>
+			<li>123</li>
+			<li>123</li>
+			<li>123</li> -->
+		</ul>
+		<script>
+			//自定义的数据
+			var data = ["A","b","c"];
+
+			box.innerHTML = data.map(function (item){
+				return '<li>'+item+'</li>'
+			}).join("");
+
+			//向后端请求数据
+
+		</script>
+	</body>
+</html>

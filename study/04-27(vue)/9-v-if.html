@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./src/vue.js"></script>
+	</head>
+
+	<body>
+		<div id="app">
+			<p>hello</p>
+			{{ message }}
+		</div>
+		<script>
+
+			var vm = new Vue({
+				el: "#app",
+				data:{
+					list:[1,2,3,4]
+				},
+				methods:{
+					remove(index){
+						this.list.splice(index,1)
+					},
+					addColor(ev){
+						ev.target.style.background = 'red';
+					}
+				}
+			})
+
+			console.log( vm );
+
+			//virtual dom 
+			// DOM diff
+
+		</script>
+	</body>
+</html>

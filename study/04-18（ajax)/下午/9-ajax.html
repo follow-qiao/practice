@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<!--请求根目录下-->
+		<!-- <script src="/js/jquery-3.2.0.js"></script> -->
+		<!--相对于当前文件的路径-->
+		<script src="./js/jquery-3.2.0.js"></script>
+		<script>
+			/*
+				发送请求，会设置请求头
+					host
+					user-agent
+					Content-Type
+			*/
+		</script>
+	</head>
+
+	<body>
+		<div>
+			<p>用户名:<input type="text" id="userName" /><span id="mes"></span></p>
+			<p>密码:<input type="password" /></p>
+			<p><input type="button" value="登录" /></p>
+		</div>
+		<script>
+			/*
+				使用ajax发送数据，做一些什么事情？
+				
+				拿jq来举例：
+					1. 使用$.ajax这个函数发送数据
+					2. 发送地址，发送的数据
+					3. 监控响应完成的函数
+
+				原生中怎么写？
+				ajax请求的过程：
+					1. 初始ajax对象                   0
+					2. 准备请求地址，准备数据         1
+					3. 发送数据                        2
+					4. 接收数据，（接收数据未完成）    3
+					5. 接收数据完成                    4
+
+				当进行到某一步的时候，在ajax对象中有一个readyState记录进行的步骤，记录是为数字 0 1 2 3 4
+
+			*/
+
+			$("#userName").on("blur",function (){
+				//得到ajax对象
+				var xhr = new XMLHttpRequest();
+				xhr.open("post",'./testphp/post.php',true);
+
+				//发送post请求设置
+				xhr.setRequestHeader("Content-Type",'application/x-www-form-urlencoded');
+				//触发onload事件请求完成，readyState为4
+				xhr.onload = function (){
+					console.log( xhr.responseText );
+					console.log( xhr.readyState );	
+				};
+				xhr.send('user='+$(this).val());
+			})
+
+		</script>
+	</body>
+</html>

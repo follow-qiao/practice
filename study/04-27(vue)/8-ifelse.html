@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./src/vue.js"></script>
+	</head>
+
+	<body>
+		<div id="app">
+			<!-- <p v-if="message == 1">message为1</p>
+			<p v-if="message == 1">message为1</p>
+			<p v-if="message == 1">message为1</p> -->
+			
+			<template v-if="message == 1">
+				<p>message为1</p>
+				<p>message为1</p>
+				<p>message为1</p>
+			</template>
+
+			<p v-else-if='message == 2'>message为2</p>
+			<p v-else-if='message == 3'>message为3</p>
+			<p v-else>message没有值</p>
+		</div>
+		<script>
+			/*
+				过滤器
+
+					| 管道符
+				语法：表达式 | 过滤函数
+			*/
+
+			var vm = new Vue({
+				el: "#app",
+				data:{
+					message:"1"
+				}
+			})
+
+		</script>
+	</body>
+</html>

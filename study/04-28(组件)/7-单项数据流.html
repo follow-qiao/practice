@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			.select {
+				width: 100px;
+				border: 1px solid #ccc;
+			}
+		</style>
+		<script src="./src/vue.js"></script>
+	</head>
+
+	<body>
+		<!-- 自定义一个标签，标签代表是下拉框 -->
+		<div id="app">
+			<h2>message在父组件中使用</h2>
+			<p>{{message}}</p>
+			<hr>
+			<h2>使用了子组件</h2>
+			<custom :mes="message"></custom>
+			<custom :mes="message"></custom>
+		</div>
+
+		<script>
+			// 定义组件
+			// 组件在vue中是一个自定义的html标签
+			//全局定义组件
+
+			/*
+				组件理解为一个函数
+					组件使用后返回值 -> 模板
+					给组件传参
+						写在使用组件的行间，作为自定义行间属性	
+						在组件中接收，props接收
+
+				每个组件有自己的数据
+
+				组件中data必须是一个函数，并且在函数中return一个对象
+
+				单向数据流
+					数据从父组件流向（传递）给子组件，只能单向绑定。
+					在子组件内部不应该修改父组件传递过来的数据。
+
+				组件的作用是独立的。
+
+			*/
+
+			Vue.component('custom',{
+				props:['mes'],
+				data(){
+					return {
+						dataMes : this.mes  //数据的初始值为mes
+					}
+				},
+				template: `
+				<div>
+					<input type="button" value="改变数据" @click="changeMesHandle" />
+					<p>{{dataMes}}</p>
+				</div>
+				`,
+				methods:{
+					changeMesHandle(){
+						this.dataMes = "子组件"
+					}
+				}
+			})
+			//根组件
+			new Vue({
+				el:'#app',
+				data:{
+					message:"hello"
+				}
+			})
+
+
+
+		</script>
+
+
+	</body>
+</html>

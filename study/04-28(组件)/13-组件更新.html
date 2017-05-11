@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			.select {
+				width: 100px;
+				border: 1px solid #ccc;
+			}
+			.box {
+				width: 100px;
+				height: 100px;
+				background: red;
+			}
+		</style>
+		<script src="./src/vue.js"></script>
+	</head>
+
+	<body>
+		<!-- 自定义一个标签，标签代表是下拉框 -->
+		<div id="app">
+			
+			<input  v-model="message" />
+
+			<custom-dialog :title='message' @changes="changes"></custom-dialog>
+			<hr>
+			<custom-dialog :title="message"></custom-dialog>
+		</div>
+
+		<script>
+			
+			Vue.component('custom-dialog',{
+				props:{
+					title:{
+						type:String,
+						default:"我是一个标题",
+						required:true
+					}
+				},
+				data(){
+					return {
+						mes: this.title
+					}
+				},
+				template: `
+					<div>
+						<h2>
+							<input type="button" @click="changeValue" value="更新值" />
+							{{mes}}
+						</h2>
+					</div>
+				`,
+				methods:{
+					changeValue(){
+						this.mes = "hello"
+
+//						this.$emit("changes",'hello')
+					}
+				}
+			})
+			//根组件
+			new Vue({
+				el:'#app',
+				data:{
+					message:"提醒"
+				},
+				methods:{
+					changes(value){
+
+						this.message = value;
+					}
+				}
+			})
+
+
+
+		</script>
+
+
+	</body>
+</html>

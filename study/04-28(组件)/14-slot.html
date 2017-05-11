@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			.select {
+				width: 100px;
+				border: 1px solid #ccc;
+			}
+			.box {
+				width: 100px;
+				height: 100px;
+				background: red;
+			}
+		</style>
+		<script src="./src/vue.js"></script>
+	</head>
+
+	<body>
+		<!-- 自定义一个标签，标签代表是下拉框 -->
+		<div id="app">
+			<custom-dialog :title='message' :list="list">
+				{{mes}}
+			</custom-dialog>
+		</div>
+
+		<script>
+		// 注意在 JavaScript 中对象和数组是引用类型，指向同一个内存空间，如果 prop 是一个对象或数组，在子组件内部改变它会影响父组件的状态。
+		
+			Vue.component('custom-list',{
+				props:['list'],
+
+				template:`
+				<div>
+					<input type="button" value="改变" @click="changeList" />
+					<ul>
+						<li v-for="item in list">{{item}}</li>
+					</ul>
+				</div>
+				`,
+				methods: {
+					changeList(){
+						this.list.push(Math.random())
+					}
+				}
+			})
+			
+			Vue.component('custom-dialog',{
+				props:{
+					title:{
+						type:String,
+						default:"我是一个标题",
+						required:true
+					},
+					list:{
+						type: Array,
+						default: []
+					}
+				},
+				data(){
+					return {
+						mes: '我是子组件'
+					}
+				},
+				template: `
+					<div>
+						<h2>
+							{{mes}}
+							插槽：：：：：<slot></slot>
+							<custom-list :list="list"></custom-list>
+						</h2>
+					</div>
+				`
+			})
+
+			var list = [1,2,3]
+
+
+			//根组件
+			new Vue({
+				el:'#app',
+				data:{
+					message:"提醒",
+					mes:"我是父组件",
+					list:list
+				},
+				methods:{
+					changes(value){
+
+						this.message = value;
+					}
+				}
+			})
+
+
+
+		</script>
+
+
+	</body>
+</html>
